@@ -1,0 +1,85 @@
+<div class="flex-container">
+  <div class="left-div">
+    <div class="field" draggable="true" (dragstart)="onDragStart($event, 'multiple-choice-one')">
+      Multiple Choice (One Answer)
+    </div>
+    <div class="field" draggable="true" (dragstart)="onDragStart($event, 'multiple-choice-many')">
+      Multiple Choice (Many Answers)
+    </div>
+    <div class="field" draggable="true" (dragstart)="onDragStart($event, 'dropdown-one')">
+      Dropdown (One Answer)
+    </div>
+    <div class="field" draggable="true" (dragstart)="onDragStart($event, 'dropdown-many')">
+      Dropdown (Many Answers)
+    </div>
+  </div>
+
+  <div class="right-div">
+    <div *ngFor="let page of surveyPages.slice(1); let i = index" class="page-card">
+      <div class="card">
+        <div class="card-header">
+          <p>Page {{ i + 1 }}</p>
+          <div class="mb-3">
+            <input type="text" class="form-control" id="pageTitle" placeholder="untitled">
+          </div>
+          <button class="remove-page-button" (click)="removePage(i + 1)">Remove Page</button>
+        </div>
+        <div class="card-body" droppable="true" (drop)="onDrop($event, i + 1, 'checkbox')" (dragover)="onDragOver($event, i + 1)"
+          (dragenter)="onDragEnter(i + 1)" (dragleave)="onDragLeave(i + 1)"
+          [ngClass]="{'drag-over': dragOverPage === i + 1}">
+          <div *ngIf="showPlaceholder[i+1]" class="placeholder-text">
+            Drag and drop a question here
+          </div>
+          <div *ngFor="let question of page.questions; let j = index" class="question"
+            (dragstart)="onQuestionDragStart($event, question)">
+            {{ question.type }}
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
+              aria-controls="staticBackdrop">
+              Add Field
+            </button>
+
+            <div class="offcanvas offcanvas-end" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
+              aria-labelledby="staticBackdropLabel">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="staticBackdropLabel">Survey question Editor</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                <div class="mb-3">
+                  <label for="Question" class="form-label">Question</label>
+                  <textarea class="form-control" id="questionEditor" rows="3" [(ngModel)]="questionText"></textarea>
+                </div>
+                <div class="mb-3">
+                  <label for="Answer" class="form-label">Answer</label>
+                  <div *ngIf="question.type === 'checkbox' && selectedFieldType === 'checkbox'">Checkbox options here
+                  </div>
+                  <div *ngIf="question.type === 'radio' && selectedFieldType === 'radio'">Radio options here</div>
+                  <div
+                    *ngIf="(question.type === 'dropdown-one' || question.type === 'dropdown-many') && selectedFieldType === 'dropdown'">
+                    Dropdown options here</div>
+                </div>
+                <button type="submit" class="btn btn-primary" (click)="saveQuestion()">Save</button>
+              </div>
+            </div>
+            <button class="remove-field-button" (click)="removeField(i + 1, j)">Remove Field</button>
+          </div>
+          <!-- Display saved questions -->
+          <div *ngFor="let question of page.questions" class="saved-question">
+            <p>{{ question.text }}</p>
+            <p>{{ question.answer }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="add-page-container">
+      <button class="add-page-button" (click)="addPage()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="21" fill="currentColor" class="bi bi-plus-lg"
+          viewBox="0 0 16 16">
+          <path fill-rule="evenodd"
+            d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
