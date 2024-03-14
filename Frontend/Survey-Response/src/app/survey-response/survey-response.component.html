@@ -1,0 +1,25 @@
+
+<form [formGroup]="myform">
+    <div>
+        <label class="form-label">SurveyId</label>
+        <input type="text" class="form-control" formControlName="surveyId">
+        <a class="btn btn-primary" (click)="getquestions(myform.value)">Get</a>
+    </div>
+</form>
+<div class="card">
+    <div class="card-header">
+        <h5>Featured</h5>
+    </div>
+    <div class="card-body">
+        <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+        <div>
+            <div formArrayName="questions">
+                <div *ngFor="let ques of questionList">
+                    {{ques.questions}}
+
+                </div>
+            </div>
+        </div>
+        <a href="#" class="btn btn-primary">Submit</a>
+    </div>
+</div>
