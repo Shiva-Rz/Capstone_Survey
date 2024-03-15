@@ -1,0 +1,56 @@
+<div class="flex-container">
+  <div class="left-div">
+    <div class="field" draggable="true" (dragstart)="onDragStart($event, 'multiple-choice-one')">
+      Multiple Choice (One Answer)
+    </div>
+    <div class="field" draggable="true" (dragstart)="onDragStart($event, 'multiple-choice-many')">
+      Multiple Choice (Many Answers)
+    </div>
+    <div class="field" draggable="true" (dragstart)="onDragStart($event, 'dropdown-one')">
+      Dropdown (One Answer)
+    </div>
+    <div class="field" draggable="true" (dragstart)="onDragStart($event, 'dropdown-many')">
+      Dropdown (Many Answers)
+    </div>
+  </div>
+
+  <div class="right-div">
+    <div *ngFor="let page of surveyPages.slice(1); let i = index" class="page-card">
+      <div class="card">
+        <div class="card-header">
+          Page {{ i + 1 }}
+          <button class="remove-page-button" (click)="removePage(i + 1)">Remove Page</button>
+        </div>
+        <div class="card-body" droppable="true" (drop)="onDrop($event, i + 1)" (dragover)="onDragOver($event)">
+          <div *ngFor="let question of page.questions; let j = index" class="question" draggable="true"
+            (dragstart)="onQuestionDragStart($event, question)">
+            {{ question.type }}
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+              Add Field
+            </button>
+            
+            <div class="offcanvas offcanvas-end" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="staticBackdropLabel">Survey question Editor</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                  <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Question</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+            <button class="remove-field-button" (click)="removeField(i + 1, j)">Remove Field</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="add-page-container">
+      <button class="add-page-button" (click)="addPage()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="21" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+      </svg></button>
+    </div>
+  </div>
+</div>
