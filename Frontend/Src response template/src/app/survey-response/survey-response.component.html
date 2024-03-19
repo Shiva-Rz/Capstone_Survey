@@ -1,0 +1,42 @@
+
+<form [formGroup]="myForm" id="myForm">
+    <!-- <div>
+        <label class="form-label">SurveyId</label>
+        <input type="text" class="form-control" formControlName="surveyId">
+        <a class="btn btn-primary" (click)="getquestions(myForm.value)">Get</a>
+    </div> -->
+  
+
+<div class="card" *ngFor="let pg of pages" >
+     <div class="card-header">
+        <h5>{{pg.pageNo}}.{{pg.pageTitle}}</h5>
+    </div>
+    <div class="card-body">
+        <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+        <div>
+            <div>
+                <div *ngFor="let qn of question">
+                    <div *ngIf="pg.pageId==qn.pageId">
+                   {{qn.questionNo}}.{{qn.questions}}
+                <!-- <div *ngFor="let opt of options">{{opt.optionId}}.{{opt.options}}<div> -->
+                    <div *ngFor="let opt of options">
+                        <div *ngIf="qn.questionId==opt.questionId">
+                            <div *ngIf="qn.optionType=='Single Choice'">
+                    <input type="radio" name="optionId"  formControlName="optionId" value="{{opt.optionId}}">
+                    &nbsp;<label>{{opt.options}}</label>
+                </div>
+                <div *ngIf="qn.optionType=='Multiple Choice'">
+                    <input type="checkbox" name="optionId" formControlName="optionId" value="{{opt.optionId}}"/>
+                    &nbsp;<label>{{opt.options}}</label>
+                </div>
+                </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</div>
+<a href="#" class="btn btn-primary" (click)="insertAnswer(myForm.value)">Submit</a>
+</form>
