@@ -1,0 +1,230 @@
+<div class="position-sticky">
+
+    <div class="position-sticky">
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+                <span class="navbar-brand mb-0 h1">Survey Builder</span>
+            </div>
+        </nav>
+        <!-- <header>
+            <div class="card">
+                <div class="card-body" style="padding: 11px;">
+                    <h5 class="card-title" style="margin-left: 1%;">Survey Summary</h5>
+                    <button type="button" id="btn1" class="btn-close" aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="card" style="border-bottom: 1px ridge rgb(224, 223, 223); box-shadow: 2px 2px #e7e7e7;">
+                <div class="card-body" style="padding: 7px;">
+                    <h4 class="card-title">Test Survey</h4>
+                    <button type="button" id="btn1" class="btn btn-danger" style="border-radius: 0%;">Preview</button>
+                </div>
+            </div>
+        </header> -->
+
+    </div>
+
+
+
+    <div class="flex-container">
+        <form [formGroup]="myForm">
+
+            <!-- <body> -->
+
+            <div class="card-body" id="rightDiv">
+                <div class="container">
+                    <input type="text" class="form-control" placeholder="Add Title Here" id="title">
+                </div>
+
+                <div class="container mt-3" *ngFor="let single of singleQuestions.slice(1,16); let i = index">
+
+                    <div class="card mt-5">
+
+                        <div class="card-body" *ngIf="singleflag">
+                            <p id="qbox"></p><input type="text" class="form-control" placeholder="Question">
+
+                            <!-- <svg height="30" width="30">
+                            <circle cx="15" cy="15" r="10" stroke="grey" stroke-width="2" fill="white" />
+                            Sorry, inline SVG isn't supported by your browser.
+                        </svg>
+                        <input type="text" class="form-control" id="opt" />
+                        <br>
+                        <svg height="30" width="30">
+                            <circle cx="15" cy="15" r="10" stroke="grey" stroke-width="2" fill="white" />
+                            Sorry, inline SVG isn't supported by your browser.
+                        </svg>
+                        <input type="text" class="form-control" id="opt" /> -->
+                            <!-- 
+                        <div *ngFor="let option of options.slice(0,10);" formControlName="options"> -->
+                            <div formArrayName="optionList">
+                                <div *ngFor="let option of optionListArray().controls.slice(0,10);">
+                                    <svg height="30" width="30">
+                                        <!-- Radio button icon -->
+                                        <circle cx="15" cy="15" r="10" stroke="grey" stroke-width="2" fill="white" />
+                                        Sorry, inline SVG isn't supported by your browser.
+                                    </svg>
+                                    <input type="text" class="form-control" formControlName="Qoptions" id="opt" />
+
+                                </div>
+
+                                <br>
+                                <button class="btn" (click)="addOption()">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M12 4C11.4477 4 11 4.44772 11 5V11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H11V19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19V13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11H13V5C13 4.44772 12.5523 4 12 4Z"
+                                            fill="currentColor" />
+                                    </svg>
+
+                                    Add Options
+                                </button>
+
+
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+
+                    </div>
+
+                    <!-- Dropdown Question -->
+
+                    <!-- <div class="container mt-3">
+                <div class="card mt-5" *ngFor="let drop of dropQuestions.slice(1,2); let i = index">
+
+                    <div class="card-body " *ngIf="dropflag">
+
+                        <input type="text" class="form-control" placeholder="Question">
+
+
+
+                        <br>
+                        <button class="btn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 4C11.4477 4 11 4.44772 11 5V11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H11V19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19V13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11H13V5C13 4.44772 12.5523 4 12 4Z"
+                                    fill="currentColor" />
+                            </svg>
+
+                            Add Options
+                        </button>
+                    </div>
+                </div>
+            </div>  -->
+
+                    <!-- Check Box -->
+
+                    <!-- <div class="container mt-3" *ngFor="let check of checkQuestions.slice(1,16); let i = index">
+                <div class="card mt-5" *ngIf="checkflag">
+
+                    <div class="card-body">
+
+                        <input type="text" class="form-control" placeholder="Question">
+
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="20" height="20" stroke="grey" stroke-width="2" fill="white" />
+                        </svg>
+                        <input type="text" class="form-control" id="opt" />
+
+                        <br>
+
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="20" height="20" stroke="grey" stroke-width="2" fill="white" />
+                        </svg>
+                        <input type="text" class="form-control" id="opt" />
+
+                        <br>
+                        <button class="btn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 4C11.4477 4 11 4.44772 11 5V11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H11V19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19V13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11H13V5C13 4.44772 12.5523 4 12 4Z"
+                                    fill="currentColor" />
+                            </svg>
+
+                            Add Options
+                        </button>
+                    </div>
+
+                    <div class="card-footer">
+
+                    </div>
+                </div>
+            </div>
+ -->
+
+                    <button type="button" class="btn btn-secondary mt-3 " (click)="single()" (click)="addSingle()"
+                        id="button1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 4C11.4477 4 11 4.44772 11 5V11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H11V19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19V13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11H13V5C13 4.44772 12.5523 4 12 4Z"
+                                fill="currentColor" />
+                        </svg>
+
+
+                        <span class="form-label" *ngIf="flag1">Add New</span>
+
+                        <!-- <li *ngIf="flag">
+                    <button class="btn" (click)="single()" (click)="addSingle()">Single
+                        Choice</button>
+                    <button class="btn" (click)="check()" (click)="addCheck()">Multiple
+                        Choices</button>
+                    <button class="btn" (click)="drop()" (click)="addDropdown()">Dropdown</button>
+                </li> -->
+
+                    </button>
+
+
+                    <!-- <div *ngFor="let page of surveyPages.slice(1,4); let i = index" class="page-card">
+                    <div class="card">
+                        
+                        <div class="card-header" style="background-color: gray;">
+                            Page {{ i + 1 }}
+                            <div>
+                                <input type="text" class="form-control" placeholder="untitled"
+                                    formControlName="pageTitle" style=" color: white;background-color: transparent;">
+                            </div>
+                            <button class="btn btn-outline-warn" (click)="removePage(i + 1)">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M6.2253 4.81108C5.83477 4.42056 5.20161 4.42056 4.81108 4.81108C4.42056 5.20161 4.42056 5.83477 4.81108 6.2253L10.5858 12L4.81114 17.7747C4.42062 18.1652 4.42062 18.7984 4.81114 19.1889C5.20167 19.5794 5.83483 19.5794 6.22535 19.1889L12 13.4142L17.7747 19.1889C18.1652 19.5794 18.7984 19.5794 19.1889 19.1889C19.5794 18.7984 19.5794 18.1652 19.1889 17.7747L13.4142 12L19.189 6.2253C19.5795 5.83477 19.5795 5.20161 19.189 4.81108C18.7985 4.42056 18.1653 4.42056 17.7748 4.81108L12 10.5858L6.2253 4.81108Z"
+                                        fill="currentColor" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div> -->
+
+
+                    <!-- <button class="btn btn-secondary "   (click)="addchange()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 4C11.4477 4 11 4.44772 11 5V11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H11V19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19V13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11H13V5C13 4.44772 12.5523 4 12 4Z"
+                            fill="currentColor" />
+                    </svg> Add Questions
+                    <select class="form-outline" *ngIf="flag">
+                        <option>Single Choices</option> 
+                        <option>Multiple Choices</option> 
+                        <option>Choices</option> 
+                    </select> -->
+
+                    <!-- <div class="container">
+                <h2>With overscroll chaining</h2>
+                <p>
+            </div> -->
+
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- </body> -->
+    <!-- </div> -->
+</div>
