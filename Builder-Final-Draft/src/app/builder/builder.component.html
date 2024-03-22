@@ -1,0 +1,40 @@
+<div class="position-sticky">
+    <div class="container-fluid">
+        <nav class="navbar navbar-dark bg-dark">
+            <span class="navbar-brand mb-0 h1">Survey Builder</span>
+        </nav>
+
+        <form [formGroup]="myForm"></form>
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title mb-3">
+                    <input type="text" class="form-control" id="title" placeholder="Untitled">
+                </div>
+                <ng-container *ngFor="let question of questions; let i = index">
+                    <div class="mb-3">
+                        <label for="Question" class="form-label">Question {{ i + 1 }}</label>
+                        <input type="text" class="form-control" [id]="'question' + question.questionId" placeholder="Enter your Question">
+                    </div>
+                    <div class="mb-3">
+                        <label for="QuestionType" class="form-label">Question Type</label>
+                        <select class="form-select" aria-label="Question Type">
+                            <option value="single_choice">Single Choice</option>
+                            <option value="multiple_choice">Multiple Choice</option>
+                            <option value="dropdown">Dropdown</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Option" class="form-label">Options</label>
+                        <div *ngFor="let option of question.option; let j = index" class="input-group mb-3">
+                            <input type="text" class="form-control" [id]="'option' + option.optionId" placeholder="Enter your Option">
+                            <button class="btn btn-danger" type="button" (click)="removeOption(question, j)">Remove Option</button>
+                        </div>
+                        <button class="btn" (click)="addOption(question)" [disabled]="question.option.length >= 10">Add Option</button>
+                    </div>  
+                    <button class="btn btn-danger" (click)="removeQuestion(i)">Remove</button>
+                </ng-container>
+                <button class="btn" (click)="addNewQuestion()" [disabled]="totalNewQuestions >= 15">Add New</button>
+            </div>
+        </div>
+    </div>
+</div>

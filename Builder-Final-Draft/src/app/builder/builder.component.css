@@ -1,0 +1,25 @@
+.card {
+    margin-left: 25%;
+    margin-top: 1%;
+    width: 50%;
+    text-align: center;
+    background-color: burlywood;
+}
+
+#title {
+    height: 60px;
+    font-size: x-large;
+}
+
+.form-label{
+    float: left;
+}
+
+.btn {
+    float: left;
+}
+
+.btn:hover {
+    color: black !important;
+    background-color: blanchedalmond!important;
+}
