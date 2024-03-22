@@ -1,0 +1,17 @@
+<div class="card">
+    <!-- <form [formGroup]="myForm" id="myForm">
+    <div class="card-header">
+       <input type="text" formContr>
+   </div>
+</form> -->
+   
+       <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+       
+        <table *ngFor="let res of responseDetailsList">
+            <tr><td>Start Time</td><td>User Name</td><td>End Time</td></tr>
+            <tr><td> {{res.startTime}}</td><td>{{res.userName}}</td><td>{{res.endTime}}</td></tr>
+        </table>
+       
+      
+   
+</div>
