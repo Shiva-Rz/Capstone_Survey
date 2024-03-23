@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TemplateService } from '../template.service';
 import { Region } from '../Model/Region';
 import { Survey } from '../Model/Suvey';
+import { Comment } from '../Model/Comment';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -10,27 +11,84 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./response-template.component.css']
 })
 export class ResponseTemplateComponent {
+
+  //  For Like
+  count: number=0;
+  liked:boolean=false;
+  showDiv:boolean[]=[];
+  showLike: boolean[]=[];
+
+
+  myForm!: FormGroup;
+  region!: Region;
+  surveymodel:Survey;
+  survey: Survey[] = [];
+  comment: Comment[] = [];
+  cmtList:Comment[]=[];
+ 
   
-  myForm!:FormGroup;
-  region!:Region;
-  survey:Survey[]=[];
-
-constructor(private template:TemplateService){
- this.region=new Region;
- this.myForm=new FormGroup({
-  regionId: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z + 0-9]+')]),
-
-});
-}
+  
 
 
-  getSurvey(data:any) {
-    this.region.regionId=data.regionId;
-    this.template.getSurvey(this.region).subscribe(page => 
-      { 
-        this.survey = page;
-        console.log(this.survey)
-  });
+  constructor(private template: TemplateService) {
+
+    this.survey.forEach(()=>this.showDiv.push(false));
+    //Like
+    this.survey.forEach(()=>this.showLike.push(false));
+
+    this.region = new Region;
+    // this.comment = new Comment;
+    this.myForm = new FormGroup({
+
+      regionId: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z + 0-9]+')]),
+      commentId: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z + 0-9]+')]),
+    });
+    this.surveymodel=new Survey;
   }
+
+  toggleLike(index:number){
+    if(this.liked){
+      this.count--;
+    }
+    else{
+      this.count++;
+    }
+    this.liked=!this.liked;
+    this.showLike[index] = ! this.showLike[index];
+  }
+
+
+    openComment(index:number){
+      this.showDiv[index]=!this.showDiv[index];
+    }
+  
+
+
+ 
+  // showComment = false;
+  // openComment(){
+  //   this.showComment=!this.showComment;
+  // }
+
+  getSurvey(data: any) {
+    this.region.regionId = data.regionId;
+    this.template.getSurvey(this.region).subscribe(page => {
+      this.survey = page;
+      // console.log(this.survey)
+    });
+  }
+
+  
+  
+
+
+ getAllComment(){
+  this.surveymodel.surveyId=1;
+  this.template.getComment(this.surveymodel).subscribe(comment =>{
+    this.cmtList=comment;
+    console.log(this.cmtList);
+  });
+ }
+
 
 }
