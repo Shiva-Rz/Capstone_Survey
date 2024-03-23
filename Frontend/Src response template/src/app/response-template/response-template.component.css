@@ -1,7 +1,7 @@
 /* .sidebar {
     position: fixed;
     /* background-color: rgb(36, 36, 35); */
-    /* height: 100%;
+/* height: 100%;
     width: 70px;
     z-index: 600;
     font-size: x-small;
@@ -24,6 +24,10 @@
     background-color: transparent;
     padding: 20px 10px 11px 10px;
     text-align: center;
+}
+
+.liked{
+    color:blue;
 }
 
 /* #mybtn:active {
@@ -111,12 +115,12 @@
 }
 
 .card {
-    margin:auto;
+    margin: auto;
     width: 50%;
     position: sticky;
     /* padding: 20%; */
-    border-radius: 10px ;
-    
+    border-radius: 10px;
+
 }
 
 
@@ -127,9 +131,11 @@
 
 .card-body {
     cursor: pointer;
+    
 }
 
-#view, .card-footer {
+#view,
+.card-footer {
     color: rgb(145, 145, 145);
     font-size: smaller;
     font-weight: 100;
@@ -157,4 +163,62 @@
     font-size: x-small;
     border: 1px solid rgb(43, 99, 242);
     border-radius: 3px;
+}
+
+.card-footer {
+    display: flex;
+    text-align: center;
+    margin: 10px;
+    
+   
+}
+
+/* .comment {
+    border-color: 1px solid black;
+    border-radius: 3px;
+    width: 40%;
+    height: 30%;
+
+} */
+
+table {
+    width: 100%;
+}
+td {
+    width: 40%;
+}
+#textarea{
+    width:40%;
+    height:20%;
+}
+
+#commentbox{
+    margin-left: 1%;
+    width:98%;
+    margin-bottom:1%;
+    padding :2%;
+    border:1px solid grey;
+   
+}
+
+#sendButton{
+    color: white;
+    background-color: #25D366;
+    border-radius: 50%;
+    border-color:  #25D366;
+
+}
+
+#commentArea{
+    height: 1 cm;
+    width : 80%;
+    border-radius: 15px 0px 0px 0px;
+    border: 1px solid rgb(202, 201, 201);
+    padding: 20px;
+    border-width: 1px;
+     
+    /* border: none;
+    border-color: #25D366;
+    border-bottom: #25D366 2px solid; */
+  
 }
