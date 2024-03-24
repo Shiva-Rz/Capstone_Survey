@@ -1,0 +1,32 @@
+.card{
+    width: 50% !important;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 10%;
+}
+
+
+#form{
+    border: 2px black solid;
+    height: 10cm;
+    width: 100%;
+ 
+}
+#page1{
+    border: 2px black solid;
+    height: 5cm;
+    width: 100%;
+  
+
+}
+
+#page2{
+    border: 2px black solid;
+    height: 5cm;
+    width: 100%;
+    
+}
+
+button{
+    float: right;
+}

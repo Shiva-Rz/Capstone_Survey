@@ -1,0 +1,107 @@
+<form [formGroup]="myForm" id="myForm">
+
+    <div class="card-body">
+        <div>
+
+
+            <div *ngFor="let qn of question;let j='index';let l=last">
+                <div *ngIf="num1==j">
+                    <div *ngFor="let pg of pages">
+                        <div class="card" *ngIf="pg.pageId==qn.pageId">
+                            <div class="card-header">
+                                <h5>{{pg.pageNo}}.{{pg.pageTitle}}</h5>
+                            </div>
+                            <!-- <div *ngIf="pg.pageId==qn.pageId" > -->
+                            {{qn.questionNo}}.{{qn.questions}} -{{j}}
+
+                            <div [ngSwitch]="qn.optionType" *ngFor="let opt of options">
+                                <div *ngIf="qn.questionId==opt.questionId">
+
+                                    <div *ngIf="qn.optionType=='Single Choice'">
+                                        <input type="radio" formControlName="optionId" name="optionId" value="{{opt.optionId}}">
+                                        &nbsp;<label for="opt.options">{{opt.options}}</label>
+
+
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+
+                            <div [ngSwitch]="qn.optionType" *ngFor="let opt of options">
+                                <div *ngIf="qn.questionId==opt.questionId">
+
+
+                                    <div *ngIf="qn.optionType=='Multiple Choice'">
+                                        <input type="checkbox" formControlName="optionId" value="{{opt.optionId}}" />
+                                        &nbsp;<label>{{opt.options}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div *ngIf="qn.optionType=='Dropdown'">
+                                <div>
+                                    <select formControlName="optionId">
+                                        <ng-container *ngFor="let opt of options">
+                                            <option *ngIf="opt.questionId==qn.questionId" value="{{opt.optionId}}">
+                                                {{opt.options}}</option>
+                                        </ng-container>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div>
+                                 <button class="btn btn-success" (click)="insertAnswer(myForm.value)" *ngIf="!l" -->
+                                    (click)="nextQuestion()">Next</button>
+
+                                <button class="btn btn-primary" (click)="insertAnswer(myForm.value)"
+                                    *ngIf="l">Submit</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</form>
+
+
+
+
+
+
+
+
+
+<!--above code -->
+<!-- <div>
+                <div *ngFor="let qn of question">
+                    <div *ngIf="pg.pageId==qn.pageId">
+                   {{qn.questionNo}}.{{qn.questions}}
+             
+                    <div *ngFor="let opt of options">
+                        <div *ngIf="qn.questionId==opt.questionId">
+                            <div *ngIf="qn.optionType=='Single Choice'">
+                    <input type="radio" name="optionId"  formControlName="optionId" value="{{opt.optionId}}">
+                    &nbsp;<label>{{opt.options}}</label>
+                </div>
+                <div *ngIf="qn.optionType=='Multiple Choice'">
+                    <input type="checkbox" name="optionId" formControlName="optionId" value="{{opt.optionId}}"/>
+                    &nbsp;<label>{{opt.options}}</label>
+                </div>
+                </div>
+                    </div>
+                </div>
+                </div>
+            </div> -->
