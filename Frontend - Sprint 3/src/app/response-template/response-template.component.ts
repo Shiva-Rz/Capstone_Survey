@@ -1,0 +1,193 @@
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Comment } from '../model/Comment';
+import { Region } from '../model/region';
+import { Survey } from '../model/survey';
+import { TemplateService } from '../service/template.service';
+import { Reaction } from '../model/Reaction';
+
+@Component({
+  selector: 'app-response-template',
+  templateUrl: './response-template.component.html',
+  styleUrls: ['./response-template.component.css']
+})
+export class ResponseTemplateComponent {
+
+  //  For Like
+  count: number = 0;
+  liked: boolean = false;
+  showDiv: boolean[] = [];
+  showLike: boolean[] = [];
+  
+  comment: Comment;
+  reactionCount!:number;
+  myForm!: FormGroup;
+  region!: Region;
+  surveymodel: Survey;
+  survey: Survey[] = [];
+  // comment: Comment[] = [];
+  cmtList: Comment[] = [];
+  results:string="";
+  reactCount:number=0;
+  
+  isShow = true;
+  
+  likeS: string = 'like-button';
+  
+  reaction:Reaction;
+  reactionList:Reaction[]=[];
+  
+  rn:Reaction = new Reaction();
+  
+  isLike = false;
+  
+  
+   constructor(private template: TemplateService) {
+  
+     this.survey.forEach(() => this.showDiv.push(false));
+     //Like
+     this.survey.forEach(() => this.showLike.push(false));
+  
+     this.region = new Region;
+     // this.comment = new Comment;
+     this.myForm = new FormGroup({
+  
+       regionId: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z + 0-9]+')]),
+       commentId: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z + 0-9]+')]),
+       comments: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z + 0-9]+')]),
+       surveyId: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z + 0-9]+')]),
+     });
+     this.surveymodel = new Survey;
+     this.comment = new Comment;
+     this.reaction=new Reaction;
+     this.getSurvey();
+     this.getReactionCount();
+   }
+  
+   toggleLike(survey: Survey): void {
+     if (this.liked) {
+       this.count--;
+     }
+     else {
+       this.count++;
+     }
+     this.liked = !this.liked;
+     this.showLike[survey.surveyId] = !this.showLike[survey.surveyId];
+   }
+  
+  
+   // openComment(survey: Survey): void {
+   //   // console.log(data.surveyId);
+   //   this.showDiv[survey.surveyId] = !this.showDiv[survey.surveyId];
+   // }
+  
+   openComment(survey: Survey): void {
+     if (this.showDiv[survey.surveyId]) {
+       this.showDiv[survey.surveyId] = false;
+     } else {
+       for (const id in this.showDiv) {
+         if (this.showDiv.hasOwnProperty(id)) {
+           this.showDiv[id] = false;
+         }
+       }
+       this.showDiv[survey.surveyId] = true;
+     }
+   }
+  
+  
+  
+  
+   // showComment = false;
+   // openComment(){
+   //   this.showComment=!this.showComment;
+   // }
+  
+   getSurvey() {
+     this.region.regionId = 1;
+     this.template.getSurvey(this.region).subscribe(page => {
+       this.survey = page;
+       // console.log(this.survey)
+     });
+   }
+  
+   getReactionCount(){
+     this.surveymodel.surveyId=1;
+     console.log(this.surveymodel.surveyId);
+     this.template.getAllReactionCount(this.surveymodel.surveyId).subscribe(value =>{
+       this.reactionList=value;
+       console.log(this.reactionList);
+       // if(this.isLike==true){
+       //   this.reaction.reactionCount=this.reaction.reactionCount+1;
+       //   console.log(this.reaction.reactionCount);
+       // }else if(this.isLike==false){
+       //   this.reaction.reactionCount=this.reaction.reactionCount;
+       //   console.log(this.reaction.reactionCount);
+       // }
+       // console.log(this.reaction.reactionCount);
+     })
+   }
+  
+   TotalnumberofLikes: { [surveyId: number]: number } = {};
+  
+   reactionInsert(surveyId: number) {
+     console.log(surveyId)
+     this.rn.surveyId = surveyId;
+     this.rn.userId = 1;
+     console.log(this.rn);
+     // this.TotalnumberofLikes[surveyId]
+     if (this.TotalnumberofLikes[surveyId]) {
+       delete this.TotalnumberofLikes[surveyId];
+       console.log("Delete");
+       this.results = this.template.reactionDelete(surveyId);
+       this.count=0;
+     } else {
+       this.TotalnumberofLikes[surveyId] = 1;
+       console.log("Insert");
+       this.results = this.template.reactionInsert(this.rn);
+       this.count=1;
+     }
+     // console.log(this.reaction.reactionCount);
+     //  this.Reaction;
+     console.log(this.results);
+     if (this.TotalnumberofLikes[surveyId]) {
+       this.TotalnumberofLikes[surveyId] = 1;
+     }
+     else {
+       this.TotalnumberofLikes[surveyId]--;
+     }
+   }
+  
+  
+   toggleDisplay() {
+     this.isShow = !this.isShow;
+     this.isLike = !this.isLike;
+   }
+  
+  
+   getAllComment(data: any) {
+     console.log(data.surveyId);
+     this.surveymodel.surveyId = data.surveyId;
+     this.template.getComment(this.surveymodel).subscribe(comment => {
+       this.cmtList = comment;
+       console.log(this.cmtList);
+     });
+   }
+  
+  
+   insertComment(data: any) {
+     console.log(data.comments);
+     this.comment.comments = data.comments;
+     this.comment.surveyId = 2;
+     this.comment.userId = 2;
+     this.template.insertComment(this.comment).subscribe({
+  
+       next: (res: any) => {
+         // this.router.navigate(['/create/builder']);
+         alert("Successfully added");
+       }, error: () => {
+         alert("Survey Details Required");
+       }
+     });
+     location.reload();
+   }
+ }

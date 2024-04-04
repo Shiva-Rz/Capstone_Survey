@@ -1,0 +1,129 @@
+.card {
+    margin: auto;
+    margin-top: 1%;
+    width: 70%;
+    background-color: burlywood;
+    position: static;
+}
+
+#title {
+    width: 30%;
+    font-size: medium;
+    text-align: center;
+    margin: auto;
+    background-color: transparent;
+    appearance: none;
+    color: white;
+    border-color: transparent;
+    border-bottom-color: white;
+    border-radius: 0%;
+    box-shadow:none ;
+
+}
+
+#title::selection {
+    outline: none;
+    border-style: none;
+}
+
+p {
+    color: white;
+    float: left;
+    margin-top: 1%;
+}
+
+.btn:hover {
+    border-color: black;
+}
+
+.header {
+    align-self: flex-end;
+}
+
+#header {
+    float: right;
+}
+
+#savebtn {
+    float: right;
+    margin-right:1%;
+}
+
+#content {
+    background-color: rgb(228, 225, 225);
+    width: 100%;
+    margin: auto;
+}
+
+#qtitle {
+    font-size: small;
+}
+
+#optfield {
+    width: 30%;
+    /* position: static; */
+}
+
+#qtype {
+    width: 16%;
+    float: right;
+}
+
+.position-sticky {
+    position: sticky;
+    top: 0;
+}
+
+#savebtn {
+    align-self: flex-end;
+    float: right;
+}
+
+.card-footer {
+    border: none;
+    background-color: transparent;
+}
+
+#optbox {
+    position: static;
+}
+
+#optiondec {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.sidebar {
+    position: fixed;
+    background-color: rgb(36, 36, 35);
+    height: 100%;
+    /* left: 0.3%; */
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+    width: 65px;
+    z-index: 600;
+    /* border-radius: 5px; */
+    font-size: x-small;
+
+}
+.list-group-item {
+
+    border: none;
+    color: rgb(251, 247, 247);
+    background-color: transparent;
+    /* background-color: #27235C; */
+    padding: 30px 10px 11px 6px;
+    text-align: center;
+    border-radius: 0%;
+}
+
+.list-group :hover {
+    background-color: rgb(249, 110, 110);
+}
+
+input:focus {
+    box-shadow:none ;
+    border-color:transparent ;
+    border-bottom: 3px solid rgb(222, 181, 135);
+
+}
+
