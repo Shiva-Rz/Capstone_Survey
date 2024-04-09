@@ -1,0 +1,246 @@
+
+  .container{
+      /* position:absolute; */
+      top:10%;
+      right:10%;
+      width:60%;
+    }
+    .container-fluid{
+      padding-right: 80%;
+    }
+
+
+
+.order-card {
+    color: #fff;
+    border-radius: 20px;
+}
+
+.bg-c-blue {
+    background: linear-gradient(45deg,#14ff0c,#36d377);
+   
+}
+.bg-c-blue:hover,.bg-c-green:hover,.bg-c-yellow:hover,.bg-c-pink:hover{
+   
+    transform: scale(1.1);
+
+}
+
+
+.bg-c-green {
+    background: linear-gradient(45deg,#89d6c7,#059175);
+}
+
+.bg-c-yellow {
+    background: linear-gradient(45deg,#e22e2eb4,#e61506);
+}
+
+.bg-c-pink {
+    background: linear-gradient(180deg,#7483b6,#0e349c);
+}
+
+
+.card {
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    box-shadow: 0 1px 2.94px 0.06px rgba(4,26,55,0.16);
+    border: none;
+    margin-bottom: 30px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.card .card-block {
+    padding: 25px;
+}
+
+.order-card i {
+    font-size: 26px;
+}
+
+.f-left {
+    float: left;
+}
+
+.f-right {
+    float: right;
+}
+.container{
+    padding-top: 8%;
+    left: 17%;
+}
+h2{
+    color:whitesmoke
+}
+.modal-header{
+    background-color: #89d6c7;
+}
+.modal-footer{
+    background-color: #89d6c7;
+}
+.modal-body{
+    text-align: center;
+}
+.row{
+    row-gap: 10px;
+}
+
+.divelement{
+    position:absolute;
+    top:20%;
+    left:20%;
+}
+
+#buttons{
+    position: absolute;
+    left: 20%;
+    top:80%
+}
+
+.fa-trash {
+    color: rgb(224, 19, 11);
+}
+
+.fa-edit {
+    color: rgb(11, 174, 224);
+}
+
+
+/* @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+
+*,
+*:after,
+*:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+} */
+/* 
+.clearfix:before,
+.clearfix:after {
+	content: " ";
+	display: table;
+}
+
+.clearfix:after {
+	clear: both;
+} */
+
+/* body {
+	font-family: sans-serif;
+	background: #f6f9fa;
+} */
+
+h1 {
+	/* color: #ccc; */
+	text-align: center;
+}
+
+a {
+  color: #ccc;
+  text-decoration: none;
+  outline: none;
+}
+
+/*Fun begins*/
+.tab_container {
+	width: 100%;
+	padding-top: 7%;
+    padding-left: 15%;
+    text-align: justify;
+}
+.tabs{
+    width:30%;
+    margin-left: 2%;
+}
+input, section {
+  clear: both;
+  padding-top: 10px;
+  display: none;
+}
+
+label {
+  font-weight: 700;
+  font-size: 18px;
+  display: block;
+  float: left;
+  width: 20%;
+  padding: 1.5em;
+  color: navy;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  background: #f0f0f0;
+}
+
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3,
+#tab4:checked ~ #content4,
+#tab5:checked ~ #content5 {
+  display: block;
+  padding: 20px;
+}
+
+.tab_container .tab-content table,
+.tab_container .tab-content h2 {
+  -webkit-animation: fadeInScale 0.7s ease-in-out;
+  -moz-animation: fadeInScale 0.7s ease-in-out;
+  animation: fadeInScale 0.7s ease-in-out;
+  color: black;
+  
+}
+.tab_container .tab-content   {
+  text-align: center;
+  padding-left: 20%;
+  color: black;
+}
+
+.tab_container [id^="tab"]:checked + label {
+  background: rgb(217, 217, 247);
+   box-shadow:inset 5px 5px navy; 
+  
+  
+}
+
+.tab_container [id^="tab"]:checked + label .fa {
+  /* color: #0CE; */
+  color:navy;
+}
+
+label .fa {
+  font-size: 1.3em;
+  margin: 0 0.4em 0 0;
+}
+
+/*Media query*/
+@media only screen and (max-width: 900px) {
+  label span {
+    display: none;
+  }
+  
+  .tab_container {
+    width: 98%;
+  }
+}
+
+/*Content Animation*/
+@keyframes fadeInScale {
+  0% {
+  	transform: scale(0.9);
+  	opacity: 0;
+  }
+  
+  100% {
+  	transform: scale(1);
+  	opacity: 1;
+  }
+}
+
+.no_wrap {
+  text-align:center;
+  color: #0ce;
+}
+.link {
+  text-align:center;
+}
