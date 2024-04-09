@@ -42,26 +42,28 @@ public class ResponseService {
 	ResponseDetailsRepo resDetailRepo;
 
 	public boolean insert(ResponsesDTO responsesdto) {
-		ResponseDetails responseDetails=resDetailRepo.findById(responsesdto.getResponseDetailId()).get();
-		ArrayList<Responses> resList=new ArrayList<Responses>();
-		Iterator<Responses> it=responseDetails.getResponse().iterator();
+		
+//		ArrayList<Responses> resList=new ArrayList<Responses>();
+//		Iterator<Responses> it=responseDetails.getResponse().iterator();
 		if((responsesdto.getOptionType()).equalsIgnoreCase("Radio")) {
-			System.out.println("a");
+//			System.out.println("a");
 		Options options = opRepo.findById(responsesdto.getOptionId()).get();
 		long opt = opRepo.findByOptionId(responsesdto.getOptionId());
 		Questions question = qnRepo.findById(opt).get();
-		
-		responses.setResponseId(rsRepo.count() + 4);
+		ResponseDetails responseDetails=resDetailRepo.findById(responsesdto.getResponseDetailId()).get();
+		responses.setResponseId(rsRepo.count() + 1);
 		responses.setResponseAnswer(options.getOptions());
 		responses.setResponseQuestion(question.getQuestions());
-		while(it.hasNext()) {
-			resList.add(it.next());
-		}
-		resList.add(responses);
-//		rsRepo.save(responses);
+		responses.setResponseDetails(responseDetails);
+		rsRepo.save(responses);
+//		while(it.hasNext()) {
+//			resList.add(it.next());
+//		}
+//		resList.add(responses);
+////		rsRepo.save(responses);
 		}
 		else if ((responsesdto.getOptionType()).equalsIgnoreCase("Checkbox")) {
-			System.out.println("b");
+//			System.out.println("b");
 			Iterator<Long> opIt=responsesdto.getOption().iterator();
 			ArrayList<String> opList=new ArrayList<String>();
 			Questions question=new Questions();
@@ -81,13 +83,16 @@ public class ResponseService {
                 }  
                 answer=builder.toString();
 			}
-			responses.setResponseId(rsRepo.count()+4);
+			ResponseDetails responseDetails=resDetailRepo.findById(responsesdto.getResponseDetailId()).get();
+			responses.setResponseId(rsRepo.count()+1);
 			responses.setResponseQuestion(question.getQuestions());
 			responses.setResponseAnswer(answer);
-			while(it.hasNext()) {
-				resList.add(it.next());
-			}
+			responses.setResponseDetails(responseDetails);
 			rsRepo.save(responses);
+//			while(it.hasNext()) {
+//				resList.add(it.next());
+//			}
+//			rsRepo.save(responses);
 		}
 		return true;
 

@@ -126,6 +126,8 @@ public class SurveyDTO {
 		this.comment = comment;
 	}
 
+	
+
 	public User getUser() {
 		return user;
 	}

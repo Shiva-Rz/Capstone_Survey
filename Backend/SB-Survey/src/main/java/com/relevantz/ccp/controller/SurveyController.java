@@ -62,6 +62,12 @@ public class SurveyController {
 
 	}
 	
+	@GetMapping("/getsurveyuser/{userId}")
+	public List<Survey> viewSurveyByUser(@PathVariable("userId") long userId) {
+		return srService.getSurveyByUser(userId);
+
+	}
+	
 	@GetMapping("/getsurvey/{surveyId}")
 	public SurveyDTO getSurveyById(@PathVariable("surveyId") long surveyId) {
 		return srService.getSurveyById(surveyId);
@@ -71,6 +77,12 @@ public class SurveyController {
 	@GetMapping("/survey")
 	public List<Survey> viewAllSurveyDetails() {
 		return srService.getAllSurveyDetails();
+	}
+	
+	@GetMapping("/getsurveyregionuser/{userId}")
+	public List<Survey> viewSurveyRegionUser(@PathVariable("userId") long userId) {
+		return srService.getSurveyRegionUser(userId);
+
 	}
 
 }

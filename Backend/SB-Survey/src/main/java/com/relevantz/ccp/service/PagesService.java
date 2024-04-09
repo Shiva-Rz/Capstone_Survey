@@ -40,25 +40,13 @@ public class PagesService {
 	
 	public boolean insert(PagesDTO pagesDTO) {
 		
-		
-		ArrayList<Pages> pageList=new ArrayList<>();
-//		pgRepo.update(26, 6);
-//		pgRepo.save(pages);
-//		System.out.println(pgRepo.count());
-//		Pages page=pgRepo.findById(pgRepo.count()).get();
 		Survey survey=srRepo.findById(pagesDTO.getSurveyId()).get();
-		Iterator<Pages> it=survey.getPage().iterator();
-		while(it.hasNext()) {
-		    Pages pages=it.next();
-		    pageList.add(pages);	
-		}
-		pages.setPageId(pgRepo.count()+2);
-//		pages.setPageNo(pagesDTO.getPageNo());
+		pages.setPageId(pgRepo.count()+1);
+		pages.setPageNo(pagesDTO.getPageNo());
 		pages.setPageTitle(pagesDTO.getPageTitle());
 		pages.setQuestion(pagesDTO.getQuestion());
-		pageList.add(pages);
-		survey.setPage(pageList);
-		srRepo.save(survey);
+		pages.setSurvey(survey);
+		pgRepo.save(pages);
 		return true;
    }
 	
@@ -103,6 +91,16 @@ public class PagesService {
 	
 	public List<Pages> getAllPagesDetails(){
 		Iterator<Pages> it=pgRepo.findAll().iterator();
+		ArrayList<Pages> list=new ArrayList<>();
+		while(it.hasNext()) {	
+			list.add(it.next());
+			
+		}
+		return list;
+	}
+	
+	public List<Pages> getPagesBySurveyId(long surveyId){
+		Iterator<Pages> it=pgRepo.findBySurveyId(surveyId).iterator();
 		ArrayList<Pages> list=new ArrayList<>();
 		while(it.hasNext()) {	
 			list.add(it.next());

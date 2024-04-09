@@ -35,6 +35,7 @@ public class Reaction {
 	@JoinColumn(name = "symbol_id")
 	private Symbol symbol;
 	
+	@JsonIgnore
 	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="user_id")
 	private User userId;

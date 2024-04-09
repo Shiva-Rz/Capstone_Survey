@@ -12,6 +12,7 @@ public class ReactionDTO {
 		super();
 	}
 
+  
 	public ReactionDTO(long surveyId, long userId, long reactionCount) {
 		super();
 		this.surveyId = surveyId;
@@ -45,13 +46,16 @@ public class ReactionDTO {
 		this.userId = userId;
 	}
 
+
 	public long getReactionCount() {
 		return reactionCount;
 	}
 
+
 	public void setReactionCount(long reactionCount) {
 		this.reactionCount = reactionCount;
 	}
+	
 	
 	
 	

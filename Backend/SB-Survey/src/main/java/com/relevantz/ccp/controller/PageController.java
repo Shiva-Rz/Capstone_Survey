@@ -21,44 +21,49 @@ import com.relevantz.ccp.service.PagesService;
 public class PageController {
 
 	@Autowired
-	PagesService srService;
+	PagesService pgService;
 
 	@PostMapping("/page")
 	public String performInsert(@RequestBody PagesDTO pages) {
-		srService.insert(pages);
+		pgService.insert(pages);
 		return "Record Inserted";
 
 	}
 
 	@PutMapping("/page")
 	public String performUpdate(@RequestBody Pages pages) {
-		srService.update(pages);
+		pgService.update(pages);
 		return "Record Updated";
 	}
 
 	@DeleteMapping("/page/{pageId}")
 	public void performDelete(@PathVariable("pageId") long pageId) {
-		srService.delete(pageId);
+		pgService.delete(pageId);
 	}
 
 	@GetMapping("/getPage/{surveyId}")
 	public List<Pages> getPagesDetails(@PathVariable("surveyId") long surveyId) {
-		return srService.getPages(surveyId);
+		return pgService.getPages(surveyId);
 	}
 
 	@GetMapping("/page")
 	public List<Pages> viewAllPagesDetails() {
-		return srService.getAllPagesDetails();
+		return pgService.getAllPagesDetails();
 	}
 
 	@GetMapping("/questionCount/{surveyId}")
 	public long getQuestioncount(@PathVariable("surveyId") long surveyId) {
-		return srService.getQuestionCount(surveyId);
+		return pgService.getQuestionCount(surveyId);
 	}
 
 	@GetMapping("/pageCount/{surveyId}")
 	public long getPagecount(@PathVariable("surveyId") long surveyId) {
-		return srService.getPageCount(surveyId);
+		return pgService.getPageCount(surveyId);
+	}
+	
+	@GetMapping("/getPageDetail/{surveyId}")
+	public List<Pages> getPagesBySurveyId(@PathVariable("surveyId") long surveyId) {
+		return pgService.getPagesBySurveyId(surveyId);
 	}
 
 }

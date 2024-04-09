@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.relevantz.ccp.dto.ReactionDTO;
+import com.relevantz.ccp.dto.ResponsesDTO;
 import com.relevantz.ccp.model.Reaction;
+import com.relevantz.ccp.model.Responses;
 import com.relevantz.ccp.model.Survey;
 import com.relevantz.ccp.model.User;
 import com.relevantz.ccp.repository.ReactionRepo;
@@ -47,6 +49,19 @@ public class ReactionService {
         return rnRepo.getReactionCount(surveyId);
     }
 	
+	public List<ReactionDTO> getReactionCountByRegion(long regionId){
+		Iterator<Survey> it=srRepo.findByRegionId(regionId).iterator();
+		ArrayList<ReactionDTO> list=new ArrayList<ReactionDTO>();
+		while(it.hasNext()) {
+			Survey survey=it.next();
+			ReactionDTO resp=new ReactionDTO();
+			resp.setSurveyId(survey.getSurveyId());
+			resp.setReactionCount(rnRepo.getReactionCount(survey.getSurveyId()));
+	        list.add(resp);
+		}
+        return list;
+    }
+	
 	public boolean deleteReactionById() {
 		rnRepo.deletebylastId();
 		return true;
@@ -72,19 +87,6 @@ public class ReactionService {
 		}
 		return list;
 	}
-	
-	public List<ReactionDTO> getReactionCountByRegion(long regionId){
-		Iterator<Survey> it=srRepo.findByRegionId(regionId).iterator();
-		ArrayList<ReactionDTO> list=new ArrayList<ReactionDTO>();
-		while(it.hasNext()) {
-			Survey survey=it.next();
-			ReactionDTO resp=new ReactionDTO();
-			resp.setSurveyId(survey.getSurveyId());
-			resp.setReactionCount(rnRepo.getReactionCount(survey.getSurveyId()));
-	        list.add(resp);
-		}
-        return list;
-    }
 
 	public List<Reaction> DepartmentDetails() {
 		Iterator<Reaction> it = rnRepo.getReaction().iterator();

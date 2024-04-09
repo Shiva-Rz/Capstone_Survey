@@ -55,5 +55,10 @@ public class ResponseDetailsController {
 	public long getResponseDetailCount(@PathVariable("surveyId") long surveyId) {
 		return rdcService.getResponseDetailCount(surveyId);
 	}
+	
+	@GetMapping("/responsedetailsurveycount/{userId}")
+	public List<ResponseDetailsDTO> getResponseDetailCountBySurvey(@PathVariable("userId") long userId) {
+		return rdcService.getResponseDetailCountUser(userId);
+	}
 
 }

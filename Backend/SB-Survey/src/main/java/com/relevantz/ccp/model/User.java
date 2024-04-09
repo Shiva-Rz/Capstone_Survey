@@ -2,6 +2,8 @@ package com.relevantz.ccp.model;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 
 import jakarta.persistence.Column;
@@ -21,7 +23,6 @@ import jakarta.persistence.Table;
 public class User {
 
 	@Id
-
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private long userId;
@@ -44,14 +45,17 @@ public class User {
 	@Column(name = "user_mobile_number")
 	private String userMobileNumber;
 
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "region_id")
 	private Region region;
 
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "department_id")
 	private Department department;
 
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "project_id")
 	private Project project;

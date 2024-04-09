@@ -13,4 +13,7 @@ public interface UserRepo extends CrudRepository<User, Long> {
 
 	@Query(value = "select * FROM tbl_user where user_type='User'", nativeQuery = true)
 	public List<User> getUserData();
+	
+	@Query(value = "select * FROM tbl_user where user_id=?", nativeQuery = true)
+	public User getByUserId(long userId);
 }

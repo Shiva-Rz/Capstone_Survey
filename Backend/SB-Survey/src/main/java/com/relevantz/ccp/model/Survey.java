@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -48,22 +50,26 @@ public class Survey {
 	@JoinColumn(name = "survey_id")
 	private List<Reaction> reaction;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "survey_id")
-	private List<Comment> comment;
+//	@OneToMany(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "survey_id")
+//	private List<Comment> comment;
 
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "user_id")
 	private User user;
 
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "region_id")
 	private Region region;
 
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "department_id")
 	private Department department;
 
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "project_id")
 	private Project project;
@@ -73,7 +79,7 @@ public class Survey {
 	}
 
 	public Survey(long surveyId, String surveyName, Date endDate, String status, List<Pages> page,
-			List<ResponseDetails> responseDetails, List<Reaction> reaction, List<Comment> comment, User user,
+			List<ResponseDetails> responseDetails, List<Reaction> reaction, User user,
 			Region region, Department department, Project project) {
 		super();
 		this.surveyId = surveyId;
@@ -83,7 +89,6 @@ public class Survey {
 		this.page = page;
 		this.responseDetails = responseDetails;
 		this.reaction = reaction;
-		this.comment = comment;
 		this.user = user;
 		this.region = region;
 		this.department = department;
@@ -144,14 +149,6 @@ public class Survey {
 
 	public void setReaction(List<Reaction> reaction) {
 		this.reaction = reaction;
-	}
-
-	public List<Comment> getComment() {
-		return comment;
-	}
-
-	public void setComment(List<Comment> comment) {
-		this.comment = comment;
 	}
 
 	public User getUser() {

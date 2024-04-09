@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,9 +36,10 @@ public class Questions {
 	@Column(name = "option_type")
 	private String optionType;
 	
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "page_id")
-//	private Pages pageId;
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "page_id")
+	private Pages page;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "question_id")
@@ -59,12 +62,14 @@ public class Questions {
 //		this.option = option;
 //	}
 	
-	public Questions(long questionId, long questionNo, String questions, String optionType, List<Options> option) {
+	public Questions(long questionId, long questionNo, String questions, String optionType, Pages page,
+			List<Options> option) {
 		super();
 		this.questionId = questionId;
 		this.questionNo = questionNo;
 		this.questions = questions;
 		this.optionType = optionType;
+		this.page = page;
 		this.option = option;
 	}
 
@@ -74,7 +79,6 @@ public class Questions {
 	public long getQuestionId() {
 		return questionId;
 	}
-
 
 	public void setQuestionId(long questionId) {
 		this.questionId = questionId;
@@ -111,6 +115,20 @@ public class Questions {
 	public void setOption(List<Options> option) {
 		this.option = option;
 	}
+
+
+
+	public Pages getPage() {
+		return page;
+	}
+
+
+
+	public void setPage(Pages page) {
+		this.page = page;
+	}
+	
+	
 
 
 

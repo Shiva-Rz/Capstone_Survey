@@ -29,16 +29,15 @@ public class ResponseDetailsDTO {
 	
 	private long surveyId;
 	
-	
+	private long responseDetailCount;
 
 	public ResponseDetailsDTO() {
 		super();
 	}
 
-	
 
 	public ResponseDetailsDTO(long responseDetailId, String userEmailId, String startTime, String endTime,
-			List<Responses> response, long userId, String userName, long surveyId) {
+			List<Responses> response, long userId, String userName, long surveyId, long responseDetailCount) {
 		super();
 		this.responseDetailId = responseDetailId;
 		this.userEmailId = userEmailId;
@@ -48,7 +47,12 @@ public class ResponseDetailsDTO {
 		this.userId = userId;
 		this.userName = userName;
 		this.surveyId = surveyId;
+		this.responseDetailCount = responseDetailCount;
 	}
+
+
+
+
 
 
 
@@ -119,6 +123,17 @@ public class ResponseDetailsDTO {
 	public void setSurveyId(long surveyId) {
 		this.surveyId = surveyId;
 	}
+
+
+	public long getResponseDetailCount() {
+		return responseDetailCount;
+	}
+
+
+	public void setResponseDetailCount(long responseDetailCount) {
+		this.responseDetailCount = responseDetailCount;
+	}
+	
 	
 	
 	

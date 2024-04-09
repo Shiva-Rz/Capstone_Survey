@@ -11,5 +11,4 @@ public interface RegionRepo extends CrudRepository<Region, Long> {
 
 	@Query(value = "select region_name from tbl_region group by region_name", nativeQuery = true)
 	public List<Region> groupByRegionName();
-
 }

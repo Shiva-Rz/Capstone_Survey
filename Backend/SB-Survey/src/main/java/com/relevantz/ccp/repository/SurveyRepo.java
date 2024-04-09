@@ -17,5 +17,12 @@ public interface SurveyRepo extends CrudRepository<Survey, Long> {
 	
 	@Query(value = "select * FROM tbl_survey where region_id=?", nativeQuery = true)
 	public List<Survey> findByRegionId(long regionId);
+	
+	@Query(value = "select * FROM tbl_survey where user_id=?", nativeQuery = true)
+	public List<Survey> findByUserId(long userId);
+	
+	@Query(value = "select * FROM tbl_survey where region_id=? and user_id!=?", nativeQuery = true)
+	public List<Survey> findByRegionUser(long userId,long regionId);
+	
 
 }

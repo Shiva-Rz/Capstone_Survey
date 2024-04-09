@@ -35,27 +35,15 @@ public class ResponseDetailsService {
 	UserRepo urRepo;
 
 	public boolean insert(ResponseDetailsDTO responseDetailsDTO) {
-//		User user=urRepo.findById(responseDetailsDTO.getUserId()).get();
 		Survey survey=srRepo.findById(responseDetailsDTO.getSurveyId()).get();
-		Iterator<ResponseDetails> it=survey.getResponseDetails().iterator();
-		ArrayList<ResponseDetails> resList=new ArrayList<ResponseDetails>();
-//		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-//		Date date = new Date();
-//		System.out.println(dateFormat.format(date));
-//		responseDetails.setUsers(user);
-//		responseDetails.setStartTime(dateFormat.format(date));
-		responseDetails.setResponseDetailId(rdRepo.count()+2);
+		User user=urRepo.findById(responseDetailsDTO.getUserId()).get();
+		responseDetails.setResponseDetailId(rdRepo.count()+1);
+//		responseDetails.setResponse(responseDetailsDTO.getResponse());
 		responseDetails.setStartTime(responseDetailsDTO.getStartTime());
 		responseDetails.setEndTime(responseDetailsDTO.getEndTime());
-//		responseDetails.setUsers(user);
-//		responseDetails.setUserEmailId(user.getUserEmailId());
-		while(it.hasNext()) {
-			resList.add(it.next());
-		}
-		resList.add(responseDetails);
-		survey.setResponseDetails(resList);
-//		rdRepo.save(responseDetails);
-		srRepo.save(survey);
+		responseDetails.setSurvey(survey);
+		responseDetails.setUsers(user);
+		rdRepo.save(responseDetails);
 		return true;
    }
 
@@ -104,6 +92,21 @@ public class ResponseDetailsService {
 	public long getResponseDetailCount(long surveyId) {
 		long value = rdRepo.getResponseDetailCount(surveyId);
 		return value;
+	}
+	
+	public List<ResponseDetailsDTO> getResponseDetailCountUser(long userId) {
+		Iterator<Survey> it=srRepo.findByUserId(userId).iterator();
+		ArrayList<ResponseDetailsDTO> list=new ArrayList<ResponseDetailsDTO>();
+		while(it.hasNext()) {
+			ResponseDetailsDTO responseDetailsDto=new ResponseDetailsDTO();
+			Survey survey=it.next();
+			responseDetailsDto.setSurveyId(survey.getSurveyId());
+			responseDetailsDto.setResponseDetailCount(rdRepo.getResponseDetailCount(survey.getSurveyId()));
+			list.add(responseDetailsDto);
+		}
+//		long value = rdRepo.getResponseDetailCount(surveyId);
+//		return value;
+		return list;
 	}
 
 }

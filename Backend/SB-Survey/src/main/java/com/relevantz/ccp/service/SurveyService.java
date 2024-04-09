@@ -15,11 +15,13 @@ import com.relevantz.ccp.model.Pages;
 import com.relevantz.ccp.model.Project;
 import com.relevantz.ccp.model.Region;
 import com.relevantz.ccp.model.Survey;
+import com.relevantz.ccp.model.User;
 import com.relevantz.ccp.repository.DepartmentRepo;
 import com.relevantz.ccp.repository.PagesRepo;
 import com.relevantz.ccp.repository.ProjectRepo;
 import com.relevantz.ccp.repository.RegionRepo;
 import com.relevantz.ccp.repository.SurveyRepo;
+import com.relevantz.ccp.repository.UserRepo;
 
 @Service
 public class SurveyService {
@@ -35,6 +37,10 @@ public class SurveyService {
 
 	@Autowired
 	ProjectRepo ptRepo;
+	
+	@Autowired
+	UserRepo urRepo;
+
 
 	@Autowired
 	Survey survey;
@@ -118,6 +124,26 @@ public class SurveyService {
 	
 	public List<Survey> getSurvey(long regionId) {
 		Iterator<Survey> it1 = srRepo.findByRegionId(regionId).iterator();
+		ArrayList<Survey> surveyList = new ArrayList<>();
+		while (it1.hasNext()) {
+			surveyList.add(it1.next());
+		}
+		return surveyList;
+	}
+	
+	public List<Survey> getSurveyByUser(long userId) {
+		Iterator<Survey> it1 = srRepo.findByUserId(userId).iterator();
+		ArrayList<Survey> surveyList = new ArrayList<>();
+		while (it1.hasNext()) {
+			surveyList.add(it1.next());
+		}
+		return surveyList;
+	}
+	
+	public List<Survey> getSurveyRegionUser(long userId) {
+		User user=urRepo.getByUserId(userId);
+		Region reg=user.getRegion();
+		Iterator<Survey> it1 = srRepo.findByRegionUser(reg.getRegionId(),userId).iterator();
 		ArrayList<Survey> surveyList = new ArrayList<>();
 		while (it1.hasNext()) {
 			surveyList.add(it1.next());
