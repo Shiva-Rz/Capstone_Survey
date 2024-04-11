@@ -1,0 +1,310 @@
+<app-navbar></app-navbar>
+
+
+<!--view project-->
+
+
+
+<div class="container">
+
+  <table class="table table-hover" style="margin-top: 3%;">
+
+    <tr scope="row">
+      <td colspan="8" id="tableTitle">
+        Project Details
+      </td>
+
+    </tr>
+
+    <tr scope="row">
+      <td colspan="7" id="tableAction" style="border-bottom: 1px solid #dee2e6;">
+        <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal"
+          id="addRegionButton" style="margin-top: 2%;margin-bottom: 2%;">Add Project</button>
+      </td>
+    </tr>
+    <tr scope="row" id="tableHeader" style="border-bottom: 1px solid #dee2e6;">
+      <td scope="col">Project Id</td>
+      <td scope="col">Project Name</td>
+      <td scope="col">Start Date</td>
+      <td scope="col">End Date </td>
+      <td scope="col">DepartmentName</td>
+      <td scope="col">DepartmentId</td>
+
+
+
+      <td>Update/delete</td>
+    </tr>
+
+
+    <tbody>
+      <tr *ngFor="let project of projectList" scope="row" id="tableData">
+        <td scope="col">{{project.projectId}}</td>
+        <td scope="col">{{project.projectName}}</td>
+        <td scope="col">{{project.startDate}}</td>
+        <td scope="col">{{project.endDate}}</td>
+        <td scope="col">{{project.departmentName}}</td>
+        <td scope="col">{{project.department}}</td>
+
+        <td>
+
+
+
+
+
+          <svg class="m-2" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+          (click)="dataCollect(project)">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M21.2635 2.29289C20.873 1.90237 20.2398 1.90237 19.8493 2.29289L18.9769 3.16525C17.8618 2.63254 16.4857 2.82801 15.5621 3.75165L4.95549 14.3582L10.6123 20.0151L21.2189 9.4085C22.1426 8.48486 22.338 7.1088 21.8053 5.99367L22.6777 5.12132C23.0682 4.7308 23.0682 4.09763 22.6777 3.70711L21.2635 2.29289ZM16.9955 10.8035L10.6123 17.1867L7.78392 14.3582L14.1671 7.9751L16.9955 10.8035ZM18.8138 8.98525L19.8047 7.99429C20.1953 7.60376 20.1953 6.9706 19.8047 6.58007L18.3905 5.16586C18 4.77534 17.3668 4.77534 16.9763 5.16586L15.9853 6.15683L18.8138 8.98525Z"
+              fill="blue" />
+            <path d="M2 22.9502L4.12171 15.1717L9.77817 20.8289L2 22.9502Z" fill="blue" />
+          </svg>
+
+
+          <svg class="m-2" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+          (click)="delete(project)">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M17 5V4C17 2.89543 16.1046 2 15 2H9C7.89543 2 7 2.89543 7 4V5H4C3.44772 5 3 5.44772 3 6C3 6.55228 3.44772 7 4 7H5V18C5 19.6569 6.34315 21 8 21H16C17.6569 21 19 19.6569 19 18V7H20C20.5523 7 21 6.55228 21 6C21 5.44772 20.5523 5 20 5H17ZM15 4H9V5H15V4ZM17 7H7V18C7 18.5523 7.44772 19 8 19H16C16.5523 19 17 18.5523 17 18V7Z"
+            fill="red" />
+          <path d="M9 9H11V17H9V9Z" fill="red" />
+          <path d="M13 9H15V17H13V9Z" fill="red" />
+        </svg>
+
+
+
+
+        </td>
+
+
+      </tr>
+
+    </tbody>
+  </table>
+  <p>{{result}}</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--insert model-->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Project Data</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="myForm" id="myform">
+
+
+          <input type="text" class="form-control" formControlName="projectName" placeholder="Project Name">
+          <div *ngIf="myForm.get('projectName')!.touched && myForm.get('projectName')!.invalid">
+
+            <div *ngIf="myForm.get('projectName')!.hasError('required')">
+              <div id="condition" style="color: red;">Project Name is required</div>
+            </div>
+            <div *ngIf="myForm.get('projectName')!.hasError('pattern')">
+              <div id="condition"> Invalid Project Name</div>
+
+            </div>
+          </div>
+          <br>
+
+          <label for="" id="Date">Start Date :</label>
+          <input type="date" class="form-control" formControlName="startDate" (change)="onDateChange(myForm.value)">
+          <div *ngIf="myForm.get('startDate')!.touched && myForm.get('startDate')!.invalid">
+
+            <div *ngIf="myForm.get('startDate')!.hasError('required')">
+              <div id="condition" style="color: red;">*Start Date is required</div>
+            </div>
+
+            <div *ngIf="myForm.get('startDate')!.invalid">
+              <p class="error-message">Please Choose Current or Following Date</p>
+            </div>
+
+          </div>
+
+          <br>
+          <label for="" id="Date">End Date :</label>
+          <input type="date" class="form-control" formControlName="endDate" (change)="onDateChange1(myForm.value)">
+          <div *ngIf="myForm.get('endDate')!.touched && myForm.get('endDate')!.invalid">
+
+            <div *ngIf="myForm.get('endDate')!.hasError('required')">
+              <div id="condition" style="color: red;">*End Date is required</div>
+            </div>
+
+            <div *ngIf="myForm.get('endDate')!.invalid">
+              <p class="error-message" style="color: red;">Please choose a date after Start Date</p>
+            </div>
+
+          </div>
+          <br>
+
+          <select class="form-select" name="Region" id="" formControlName="regionId"
+            (change)=" getdepartment(myForm.value)">
+            <option value="" disabled selected hidden>Select Region</option>
+            <option *ngFor="let reg of regList" [value]="reg.regionId">{{reg.regionName}}</option>
+          </select>
+
+          <div *ngIf="myForm.get('regionId')!.touched && myForm.get('regionId')!.invalid">
+
+            <div *ngIf="myForm.get('regionId')!.hasError('required')">
+              <div id="condition" style="color: red;">*Region Name is required</div>
+            </div>
+
+          </div>
+
+
+          <br>
+
+          <select class="form-select" id="inputSelectReason" class="form-control" formControlName="departmentId">
+            <option value="" disabled selected hidden>Select Department</option>
+            <option *ngFor="let dep of depList" [value]="dep.departmentId">{{dep.departmentName}}</option>
+          </select>
+
+          <div *ngIf="myForm.get('departmentId')!.touched && myForm.get('departmentId')!.invalid">
+
+            <div *ngIf="myForm.get('departmentId')!.hasError('required')">
+              <div id="condition" style="color: red;">*Department Name is required</div>
+            </div>
+
+          </div>
+
+          <br>
+
+
+
+          <br>
+          <!-- <p style="color:red;">{{result}}</p> -->
+          <!-- <button type="button" class="btn btn-primary" (click)="insert(myForm.value)">Insert</button> -->
+          <p>{{result}}</p>
+
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="insertProject(myForm.value)"
+          [disabled]="!myForm.valid">Insert</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- UPDATE -->
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Project Data</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <form [formGroup]="myForm1" id="myform1">
+
+
+
+          <label>Project Id : </label>
+
+          <input type="text" class="form-control" formControlName="projectId" [placeholder]="projectDetail.projectId"
+            [(ngModel)]="projectDetail.projectId" readonly>
+          <div *ngIf="myForm.get('projectId')!.touched && myForm.get('projectId')!.invalid">
+
+            <div *ngIf="myForm.get('projectId')!.hasError('required')">
+              <div id="condition">Project ID is required</div>
+            </div>
+            <div *ngIf="myForm.get('projectId')!.hasError('pattern')">
+              <div id="condition"> Invalid Project Id</div>
+
+            </div>
+          </div><br>
+
+         
+
+
+          <label>Project Name : </label>
+          <input type="text" class="form-control" formControlName="projectName"
+            [placeholder]="projectDetail.projectName" [(ngModel)]="projectDetail.projectName">
+          <div *ngIf="myForm.get('projectName')!.touched && myForm.get('projectName')!.invalid">
+
+            <div *ngIf="myForm.get('projectName')!.hasError('required')">
+              <div id="condition">Project Name is required</div>
+            </div>
+            <div *ngIf="myForm.get('projectName')!.hasError('pattern')">
+              <div id="condition"> Invalid Name Id</div>
+
+            </div>
+          </div><br>
+
+
+          
+
+
+          <label>Start Date :</label>
+
+          <input type="date" class="form-control" formControlName="startDate" [placeholder]="projectDetail.startDate"
+            [(ngModel)]="projectDetail.startDate">
+
+          <div *ngIf="myForm.get('startDate')!.touched && myForm.get('startDate')!.invalid">
+
+            <div *ngIf="myForm.get('startDate')!.hasError('required')">
+              <div id="condition">start date is required</div>
+            </div>
+          </div>
+
+
+
+
+          <br>
+          <label>End Date: </label>
+
+          <input type="date" class="form-control" formControlName="endDate" [placeholder]="projectDetail.endDate"
+            [(ngModel)]="projectDetail.endDate">
+          <br>
+
+
+          <label for="">Department Name</label>
+          <select id="inputSelectReason" class="form-control" formControlName="departmentId"
+            [(ngModel)]="projectDetail.department">
+            <!-- <option *ngIf="projectDetail.department" [ngValue]="projectDetail.department">{{projectDetail.departmentName}}</option> -->
+            <option *ngFor="let dep of depList1" [value]="dep.departmentId!">{{dep.departmentName}}</option>
+          </select>
+
+
+
+          <br>
+          <p>{{result}}</p>
+
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary " style="text-align: center;"
+          (click)="updateProject(myForm1.value)" [disabled]="!myForm1.valid">Update</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
