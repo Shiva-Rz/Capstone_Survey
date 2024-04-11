@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="login-container">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm">
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-control" formControlName="email" placeholder="Enter your Email">
+        <div *ngIf="loginForm.get('email')!.touched && loginForm.get('email')!.invalid">
+          <div *ngIf="loginForm.get('email')!.hasError('required')">
+            <font color="red">*Email required</font>
+          </div>
+          <div *ngIf="loginForm.get('email')!.hasError('pattern')">
+            <font color="red">*Invalid email format</font>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <!-- <i class="fa fa-info-circle" aria-hidden="true"  id ="info"  data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" title="        
+          Cond: a. 8-14 characters 
+           b. Minimum one capital letter
+           c. Minimum one small letter
+           d. Minimum one special character
+           e. Minimum one numeric character">
+
+          </i> -->
+        <input type="password" id="password" class="form-control" formControlName="password" placeholder="Enter your password">
+        <div *ngIf="loginForm.get('password')!.touched && loginForm.get('password')!.invalid">
+          <div *ngIf="loginForm.get('password')!.hasError('required')">
+            <font color="red">*Password required</font>
+          </div>
+          <!-- <div *ngIf="loginForm.get('password')!.hasError('pattern')">
+            <font color="red">*Invalid Password </font>
+          </div> -->
+        </div>
+      </div>
+      
+      <button type="submit" class="btn btn-block btn-primary" [disabled]="loginForm.invalid"
+      (click)="login()" onclick="spinner()" >Login</button>
+      
+      
+    </form>
+    <a  routerLink="forgotpassword">Forgot Password?</a>
+
+    <br><p style="color:red;font-weight: bold;">{{message}}</p>
+
+  </div>
+</div>

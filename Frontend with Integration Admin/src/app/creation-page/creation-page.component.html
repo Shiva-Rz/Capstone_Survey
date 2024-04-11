@@ -1,0 +1,245 @@
+<!-- Button trigger modal -->
+
+
+
+<div class="container-fluid mt-3">
+    <div class="row gutters-sm">
+        <!-- <div class="col-md-3 d-none d-md-block" id="side">
+            <div class="card d-inline-flex p-2">
+                <div class="card-body">
+                    <nav class="nav flex-column nav-pills nav-gap-y-1">
+
+                        <button class="btn last" id="btn1">
+                            <a data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded"
+                                data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="a3">
+
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19 5H7V3H21V17H19V5Z" fill="currentColor" />
+                                    <path d="M9 13V11H11V13H13V15H11V17H9V15H7V13H9Z" fill="currentColor" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M3 7H17V21H3V7ZM5 9H15V19H5V9Z"
+                                        fill="currentColor" />
+                                </svg> New Survey
+                            </a>
+                        </button>
+                        <hr>
+                        <button class="btn" id="btn1">
+                            <a routerLink="/survey/allsurvey" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded"
+                                id="a1">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M15 8H19V20H5V10H9V4H15V8ZM13 6H11V18H13V6ZM15 10V18H17V10H15ZM9 12V18H7V12H9Z"
+                                        fill="currentColor" />
+                                </svg> All Survey
+                            </a>
+                        </button>
+                        <hr>
+
+                    </nav>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Modal -->
+         <div class="col-md-9">
+        <!--    <div class="card-header border-bottom mb-3 d-flex d-md-none">
+                <ul class="nav nav-tabs card-header-tabs nav-gap-x-1" role="tablist">
+                    <li class="nav-item">
+                        <a data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop" id="a3">
+
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 5H7V3H21V17H19V5Z" fill="currentColor" />
+                                <path d="M9 13V11H11V13H13V15H11V17H9V15H7V13H9Z" fill="currentColor" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M3 7H17V21H3V7ZM5 9H15V19H5V9Z"
+                                    fill="currentColor" />
+                            </svg> New Survey
+                        </a>
+                    </li>
+
+                    <li>
+                        <a routerLink="/allsurvey" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded"
+                            id="a2">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M15 8H19V20H5V10H9V4H15V8ZM13 6H11V18H13V6ZM15 10V18H17V10H15ZM9 12V18H7V12H9Z"
+                                    fill="currentColor" />
+                            </svg> All Survey
+                        </a>
+                    </li>
+
+                    <li>
+                        <a routerLink="/create/response" data-toggle="tab"
+                            class="nav-item nav-link has-icon nav-link-faded" id="a2">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 21.5L17.5 13L13 10L15 2.5L6.5 11L11 14L9 21.5Z" fill="currentColor" />
+                            </svg> Response
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div> -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Survey Creation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form [formGroup]="myform" id="myform">
+                                <div class="mb-4 form-outline">
+                                    <label for="exampleInput" class="form-label">Survey Title</label>
+                                    <input type="text" class="form-control" id="inputfield" formControlName="surveyName"
+                                        name="title">
+                                </div>
+
+                                <div *ngIf="myform.get('surveyName')!.touched && myform.get('surveyName')!.invalid">
+                                    <div *ngIf="myform.get('surveyName')!.hasError('required')">
+                                        <p>Survey Title is required</p>
+                                    </div>
+                                    <div *ngIf="myform.get('surveyName')!.hasError('pattern')">
+                                        <p>Invalid Survey Title</p>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label>End Date</label>
+                                    <input type="date" class="form-control" id="inputfield" formControlName="endDate"
+                                        name="title" (change)="validDate(myform.value)" required>
+                                    <!-- console.log(this.compareDate); -->
+                                </div>
+
+                                <div *ngIf="myform.get('endDate')!.touched && myform.get('endDate')!.invalid">
+                                    <div *ngIf="myform.get('endDate')!.hasError('required')">
+                                        <p>Survey End Date is required</p>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <p>
+                                        {{msg}}
+                                    </p>
+                                </div>
+
+                                <!-- <div class="mb-4 form-outline">
+                                    <label for="exampleInput" class="form-label">Survey Title</label>
+                                    <input type="text" class="form-control" id="inputfield" formControlName="region"
+                                        name="title">
+                                </div> -->
+
+                                <div class="mb-4">
+                                    <label>Region</label>
+                                    <div class="input-group">
+                                        <select class="form-select" id="inputSelectReason" class="form-control"
+                                            formControlName="regionId" (change)="getDepartment(myform.value)">
+                                            <!-- <option >All Region</option>
+                                            <option value="" disabled selected hidden>Select Your Region</option> -->
+                                            <!-- <option [value]="0">All region</option> -->
+                                            <option *ngFor="let reg of RegionList" [value]="reg.regionId">
+                                                {{reg.regionName}}</option>
+                                        </select>
+                                        <!-- <button class="btn btn-outline-secondary" type="submit" *ngIf="flagbtn"
+                                            (click)="getDepartment(myform.value)" (click)="changeregion()">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M15.0378 6.34317L13.6269 7.76069L16.8972 11.0157L3.29211 11.0293L3.29413 13.0293L16.8619 13.0157L13.6467 16.2459L15.0643 17.6568L20.7079 11.9868L15.0378 6.34317Z"
+                                                    fill="currentColor" />
+                                            </svg>
+                                        </button> -->
+                                    </div>
+                                </div>
+
+                                <!-- <div class="input-group">
+                                        <label>Region</label>
+                                    </div>
+                                    <select id="inputSelectReason" class="form-control" formControlName="regionId">
+                                        <option value="" disabled selected hidden>Select Your Region</option>
+                                        <option *ngFor="let reg of RegionList" [value]="reg.regionId">
+                                            {{reg.regionName}}</option>
+                                    </select>
+                                </div>
+                                <button type="submit" (click)="getDepartment(myform.value)">Sample</button> -->
+
+                                <div class="mb-4" *ngIf="flagregion">
+                                    <label>Department</label>
+                                    <div class="input-group">
+                                        <select class="form-select" id="inputSelectReason" class="form-control"
+                                            formControlName="departmentId" (change)="getProject(myform.value)">
+                                            <!-- <option [value]="0">All Department</option> -->
+                                            <!-- <option selected>Choose...</option>
+                                            <option value="" disabled selected hidden>Select Your Department</option> -->
+                                            <option *ngFor="let Dept of DeptList" [value]="Dept.departmentId">
+                                                {{Dept.departmentName}}</option>
+                                        </select>
+                                        <!-- <button class="btn btn-outline-secondary" type="submit"
+                                            (click)="getProject(myform.value)" (click)="changedept()">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M15.0378 6.34317L13.6269 7.76069L16.8972 11.0157L3.29211 11.0293L3.29413 13.0293L16.8619 13.0157L13.6467 16.2459L15.0643 17.6568L20.7079 11.9868L15.0378 6.34317Z"
+                                                    fill="currentColor" />
+                                            </svg>
+                                        </button> -->
+                                    </div>
+                                </div>
+
+                                <div class="mb-4" *ngIf="flagdept">
+                                    <label>Project</label>
+                                    <div class="input-group">
+                                        <select class="form-select" id="inputSelectReason" class="form-control"
+                                            formControlName="projectId">
+                                            <!-- <option [value]="0">All Project</option> -->
+                                            <!-- <option selected>Choose...</option>
+                                            <option value="" disabled selected hidden>Select Your Project</option> -->
+                                            <option *ngFor="let Project of ProjectList" [value]="Project.projectId">
+                                                {{Project.projectName}}</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <!--<div class="mb-4">
+                                    <div class="input-group">
+                                        <label>Project</label>
+                                    </div>
+                                    <select id="inputSelectReason" class="form-control" formControlName="projectId">
+                                        <option value="" disabled selected hidden>Select Your Project</option>
+                                        <option *ngFor="let Project of ProjectList" [value]="Project.projectId">
+                                            {{Project.projectName}}</option>
+                                    </select>
+                                    <select class="custom-select" id="inputfield">
+                                        <option selected>Select</option>
+                                        <option value="1">Healthcare</option>
+                                        <option value="2">Media and Broadcasting</option>
+                                        <option value="3">Financial Technology</option>
+                                        <option value="4">E-Commerce Retailer</option>
+                                    </select> 
+                                </div> -->
+                            </form>
+                        </div>
+
+                        <div class="modal-footer">
+                            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                            <button type="submit" (click)="createSurvey(myform.value)" class="btn btn-primary">Build
+                                Survey</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <main  style="width: 90% ; margin: auto; position: static; ">
+        <app-response-template></app-response-template>
+    </main> -->
+<!-- <router-outlet></router-outlet> -->

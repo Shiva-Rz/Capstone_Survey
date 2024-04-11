@@ -1,0 +1,258 @@
+<app-navbar></app-navbar>
+
+
+
+		<div class="tab_container">
+      
+			<input id="tab1" type="radio" name="tabs" checked>
+			<label for="tab1" class="tabs"><i class="fa fa-code"></i><span>Registered Employees</span></label>
+
+			<input id="tab2" type="radio" name="tabs">
+			<label for="tab2" class="tabs"><i class="fa fa-pencil-square-o"></i><span>New Employees</span></label>
+
+			<input id="tab3" type="radio" name="tabs">
+			<label for="tab3" class="tabs"><i class="fa fa-bar-chart-o"></i><span>Existing Employees</span></label>
+    
+			<section id="content1" class="tab-content">
+				<h2 align="center">Auto Generate Password</h2>
+              
+                <table class="table  table-hover">
+                  <thead>          
+                    <tr scope="row" style="background-color: navy;color:white;font-size: large;">
+                      <td scope="col">User ID</td>
+                      <td scope="col">First Name</td>
+                      <td scope="col">Last Name</td>
+                      <td scope="col">Email ID</td>
+                      <td scope="col">Mobile Number</td>
+                      <td scope="col">Action</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let emp of generateList" scope="row">
+                      <td scope="col">{{emp.userId}}</td>
+                      <td scope="col">{{emp.userFirstName}}</td>
+                      <td scope="col">{{emp.userLastName}}</td>
+                      <td scope="col">{{emp.userEmailId}}</td>
+                      <td scope="col">{{emp.userMobileNumber}}</td>
+                      <td scope="col"><button type="button" class="btn btn-warning" (click)="generateEmployeePassword(emp.userEmailId)">Generate Password</button></td>
+                    </tr>          
+                  </tbody>
+                </table>          
+			</section>
+
+			<section id="content2" class="tab-content">
+        <h2 align="center">Mapping New Employees</h2>              
+        <table class="table  table-hover">
+          <thead>          
+            <tr scope="row" style="background-color: navy;color:white;font-size: large;">
+              <td scope="col">User Id</td>
+              <td scope="col">First Name</td>
+              <td scope="col">Last Name</td>
+              <td scope="col">Email Name</td>
+              <td scope="col">Mobile Number</td>
+              <td scope="col">Configure</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let emp of employeemappingList" scope="row">
+              <td scope="col">{{emp.userId}}</td>
+              <td scope="col">{{emp.userFirstName}}</td>
+              <td scope="col">{{emp.userLastName}}</td>
+              <td scope="col">{{emp.userEmailId}}</td>
+              <td scope="col">{{emp.userMobileNumber}}</td>
+              <td scope="col" >                
+                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"class="btn btn-success" (click)="dataCollect(emp)">Configure Employee</button>
+              </td>
+            </tr>          
+          </tbody>
+        </table>
+        <!--Update Model-->
+        <div class="modal fade" id="exampleModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Configure Employee</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">          
+              <form [formGroup]="myForm" id="myform">
+                <input type="text" class="form-control" formControlName="userFirstName"
+                  [placeholder]="employeeDetail.userFirstName " >
+                  <!-- [(ngModel)]="employeeDetail.userFirstName " readonly> -->
+                <div *ngIf="myForm.get('userFirstName')!.touched && myForm.get('userFirstName')!.invalid">          
+                  <div *ngIf="myForm.get('userFirstName')!.hasError('required')">
+                    <div id="condition">User ID is required</div>
+                  </div>
+                  <div *ngIf="myForm.get('userFirstName')!.hasError('pattern')">
+                    <div id="condition"> Invalid User ID</div>          
+                  </div>
+                </div><br>
+                
+                <select class="form-select" name="Region" id="" formControlName="regionId"
+                  (change)=" getdepartment(myForm.value)">
+                  <option value="" disabled selected hidden>Select Region/Location</option>
+                  <option *ngFor="let reg of regList" [value]="reg.regionId">{{reg.regionName}}</option>
+                </select>
+                <br>
+  
+                <select class="form-select" id="inputSelectReason" class="form-control" formControlName="departmentId"
+                  (change)=" getproject(myForm.value)">
+                  <option value="" disabled selected hidden>Select Department</option>
+                  <option *ngFor="let dep of depList" [value]="dep.departmentId">{{dep.departmentName}}</option>
+                </select>
+                <br>
+                <div formArrayName="project">
+                  <div>
+                    <button type="button" (click)="addProject()" class="btn btn-primary">
+                      Add project
+  
+                    </button>
+                  </div>
+  
+                  <div class="form-group" *ngFor="let project of projectControl;let i=index">
+                    <table>
+                      <tr>
+                        <td>
+                          <select [formControlName]="i" class="form-control">
+                            <option *ngFor="let project of projectList1" [value]="project.projectId">
+                              {{project.projectName}}
+                            </option>
+                          </select>
+                          <br></td>
+                        <td>          
+                          <button  *ngIf="i>0" class="btn btn-danger btn-sm" (click)="removeProject(i)">Remove </button>          
+                        </td>
+                      </tr>
+                    </table>
+                  </div>          
+                </div>
+              </form>
+              <p>{{result}}</p>         
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" (click)="update(myForm.value)" [disabled]="!myForm.valid">Submit</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>          
+            </div>
+          </div>
+        </div>
+      </div>		
+    </section>
+
+			<section id="content3" class="tab-content">
+        
+				<h2 align="center">Mapping Existing Employees</h2>
+            <table class="table  table-hover">
+              <thead>      
+                <tr scope="row" style="background-color: navy;color:white;font-size: large;">
+                  <td scope="col">user Id</td>
+                  <td scope="col">First Name</td>
+                  <td scope="col">Last Name</td>
+                  <td scope="col">Email Name</td>
+                  <td scope="col">Mobile Number</td>                  
+                  <td scope="col">Region Name</td>
+                  <td scope="col">Department Name</td>
+                  <td scope="col">Department Id</td>
+                  <!-- <td scope="col">Project Name</td> -->
+                  <td scope="col">Configure</td></tr>
+              </thead>
+      
+              <tbody>
+                <tr *ngFor="let emp of existingemployeeList" scope="row">
+                  <td scope="col">{{emp.userId}}</td>
+                  <td scope="col">{{emp.userFirstName}}</td>
+                  <td scope="col">{{emp.userLastName}}</td>
+                  <td scope="col">{{emp.userEmailId}}</td>
+                  <td scope="col">{{emp.userMobileNumber}}</td>
+                  <td scope="col">{{emp.regionName}}</td>
+                  <td scope="col">{{emp.departmentName}}</td>
+                  <td scope="col">{{emp.department}}</td>
+                  <!-- <td scope="col">{{emp.projectName}}</td> -->
+                  <td scope="col" >                
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1" class="btn btn-info" (click)="dataCollect(emp)">Edit</button>
+                  </td>
+                </tr>
+      
+              </tbody>
+            </table>
+            <!--Update Model-->
+            <div class="modal fade" id="exampleModal1">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Configure Employee</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form [formGroup]="myForm" id="myform">
+                    <input type="text" class="form-control" formControlName="userFirstName"
+                      [placeholder]="employeeDetail.userFirstName" [(ngModel)]="employeeDetail.userFirstName " readonly>
+                    <div *ngIf="myForm.get('userFirstName')!.touched && myForm.get('userFirstName')!.invalid">      
+                      <div *ngIf="myForm.get('userFirstName')!.hasError('required')">
+                        <div id="condition">User ID is required</div>
+                      </div>
+                      <div *ngIf="myForm.get('userFirstName')!.hasError('pattern')">
+                        <div id="condition"> Invalid User ID</div>      
+                      </div>
+                    </div><br>
+                    
+                    <select class="form-control" name="Region" id="inputSelectReason" formControlName="regionId"  
+                      (change)="getdepartment(myForm.value)">
+                      <option value="" disabled selected hidden>Select Region/Location</option>
+                      <option *ngFor="let reg of regList" [value]="reg.regionId">{{reg.regionName}}</option>
+                    </select>
+                    <br>
+      
+                    <select class="form-select" id="inputSelectReason" class="form-control" formControlName="departmentId"  
+                      (change)=" getproject(myForm.value)">
+                      <option value="" disabled selected hidden>Select Department</option>
+                      <option *ngFor="let dep of depList" [value]="dep.departmentId">{{dep.departmentName}}</option>
+                    </select>
+                    <br>
+      
+      
+                    <!-- <select class="form-select" id="inputSelectReason" class="form-control" formArrayName="project" multiple >
+                              <option value="" disabled >Select Project</option>
+                              <option *ngFor="let project of projectList1" [value]="project.projectId">{{project.projectName}}</option>
+                            </select> -->
+      
+                    <!-- <div formArrayName="project">
+                              <div *ngFor="let control of project.controls;let i=index">
+                           
+                                   <select [formControlName]="i">
+                                     <option  *ngFor="let project of projectList1" [value]="project.projectId" >
+                                      {{project.projectName}}
+                                     </option>
+                                   </select>
+                           
+                              </div>
+                           </div> -->
+                    <div formArrayName="project">
+                      <div>
+                        <button type="button" (click)="addProject()" class="btn btn-primary">Add project</button>
+                        <br></div>      
+                      <div class="form-group" *ngFor="let project of projectControl;let i=index">      
+                        <table>
+                          <tr>
+                            <td>
+                              <select [formControlName]="i" class="form-control">
+                                <option *ngFor="let project of projectList1" [value]="project.projectId">
+                                  {{project.projectName}}
+                                </option></select><br></td>
+                            <td><button  *ngIf="i>0" class="btn btn-danger btn-sm" (click)="removeProject(i)">Remove </button></td>
+                          </tr>
+                        </table>
+                        <!-- <input type="text" class="form-control" [formControlName]="i" /> -->
+                      </div></div></form><p>{{result}}</p>    
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" (click)="update(myForm.value)" [disabled]="!myForm.valid">Submit</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>      
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        </section>
+      
+
+		</div>
