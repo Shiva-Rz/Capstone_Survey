@@ -1,0 +1,97 @@
+<!-- <div *ngFor="let poll of polls">
+  <ng-container *ngFor="let comments of comments; index as i">
+  <ng-container *ngIf="comments.pollId === poll.pollId;"> -->
+    <div *ngFor="let poll of polls">
+    <ul *ngIf="comment">
+      <ng-container *ngIf="comment.poll.pollId === poll.pollId">
+        <!-- <ng-container *ngFor="let commenta of comments; index as i">
+          {{poll.commenta.id}}
+        </ng-container> -->
+      <div class="comment">
+        <div class="comment-image-container">
+          <img src="/assets/user-icon.png" />
+        </div>
+        <div class="comment-right-part">
+          <div class="comment-content">
+            <div class="comment-author">{{ comment.user.userFirstName }}</div>
+            <!-- <div class="comment-author">User</div> -->
+            <div>{{ createdAt }}</div>
+          </div>
+          <div class="comment-text" *ngIf="!isEditing()">{{ comment.body }}</div>
+          <comment-form
+            *ngIf="isEditing()"
+            submitLabel="Update"
+            [hasCancelButton]="true"
+            [initialText]="comment.body"
+            (handleSubmit)="
+              updateComment.emit({ text: $event, commentId: comment.id })
+            "
+            (handleCancel)="setActiveComment.emit(null)"
+          >
+        </comment-form>
+          <div class="comment-actions">
+            <div
+              *ngIf="canReply"
+              class="comment-action"
+              (click)="
+                setActiveComment.emit({
+                  id: comment.id,
+                  type: activeCommentType.replying
+                })
+              "
+            >
+              Reply
+            </div>
+            <div
+              *ngIf="canEdit"
+              class="comment-action"
+              (click)="
+                setActiveComment.emit({
+                  id: comment.id,
+                  type: activeCommentType.editing
+                })
+              "
+            >
+              Edit
+            </div>
+            <ng-container *ngIf="comment.user.userId == userId">
+              <div
+              *ngIf="canDelete"
+              class="comment-action"
+              (click)="deleteComment.emit(comment.id)"
+            >
+              Delete
+            </div>
+            </ng-container>
+           
+          </div>
+          <comment-form
+            *ngIf="isReplying()"
+            submitLabel="Reply"
+            [hasCancelButton]="true"
+            [initialText]="'@'+comment.user.userFirstName+' '"
+            (handleSubmit)="addComment.emit({ text: $event,  parentId: comment.id , pollId:poll.pollId,userId:userId})"
+            (handleCancel)="setActiveComment.emit(null)"
+          ></comment-form>
+          <div class="replies" *ngIf="replies.length > 0">
+            <comment
+              *ngFor="let reply of replies"
+              [comment]="reply"
+              (setActiveComment)="setActiveComment.emit($event)"
+              [activeComment]="activeComment"
+              (updateComment)="updateComment.emit($event)"
+              (deleteComment)="deleteComment.emit($event)"
+              (addComment)="addComment.emit($event)"
+              [parentId]="comment.id"
+              [replies]="[]"
+              [currentUserId]="currentUserId"
+            ></comment>
+          </div>
+        </div>
+      </div>
+      </ng-container>
+      </ul>
+      <!-- </ng-container>
+      </ng-container>
+      </div> -->
+      </div>

@@ -1,0 +1,27 @@
+<form [formGroup]="form" [formControl]="title" (ngSubmit)="onSubmit()">
+  <textarea class="comment-form-textarea h-75" formControlName="title" style="border-radius: 4px;" placeholder=" Leave a comment"></textarea>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div *ngIf="this.form.value.title?.length>1000" align="start" class="Start">*You Exceed Max characters 1000!</div>
+        <p>     </p>
+      </div>
+      <div class="col">
+        <div align="end" class="End" *ngIf="this.form.value.title?.length<=1000">{{this.form.value.title?.length || 0}}/1000</div>
+        <div align="end" class="Start" *ngIf="this.form.value.title?.length>1000">{{this.form.value.title?.length || 0}}/1000</div>
+      </div>
+ </div>
+  </div>
+  <button class="comment-form-button" (click)="refreshPage()" type="submit" [disabled]="form.invalid">
+   {{ submitLabel }}
+  </button>
+  <button
+    *ngIf="hasCancelButton"
+    type="button"
+    class="comment-form-button comment-form-cancel-button"
+    (click)="handleCancel.emit()"
+    id="comment-form-cancel-button"
+  >
+    Cancel
+  </button>
+</form>
