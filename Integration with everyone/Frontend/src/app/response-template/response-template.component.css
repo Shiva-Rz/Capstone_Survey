@@ -1,0 +1,369 @@
+ 
+.list-group {
+    position: absolute;
+}
+ 
+.list-group :hover {
+    /* background-color: rgb(249, 110, 110); */
+    border-radius: 0%;
+}
+ 
+.list-group-item {
+ 
+    border: none;
+    color: rgb(251, 247, 247);
+    background-color: transparent;
+    padding: 20px 10px 11px 10px;
+    text-align: center;
+}
+ 
+/* #mybtn:active {
+    background-color: rgb(230, 92, 120);
+}
+ 
+#mybtn:visited {
+    background-color: rgb(230, 92, 120);
+}  */
+ 
+ 
+ 
+ 
+#rightDiv {
+    /* margin-top: 1%; */
+    position: static;
+    /* margin: auto; */
+    /* margin-right: 10%; */
+    /* padding: 15px; */
+    /* border: 2px solid black; */
+    /* border-radius: 0%; */
+    /* box-shadow: 1px 1px 1px 1px rgb(244, 244, 244); */
+    /* background-color: burlywood; */
+    height: 830px;
+}
+ 
+@media (max-width: 991.98px) {
+    #rightDiv {
+        /* margin-left: 10%; */
+    }
+}
+ 
+/* Header css */
+ 
+.position-sticky {
+    position: sticky;
+    top: 0;
+}
+ 
+ 
+.sidebar {
+    position: fixed;
+    background-color: rgb(36, 36, 35);
+    height: 100%;
+    /* left: 0.3%; */
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+    width: 65px;
+    z-index: 600;
+    /* border-radius: 5px; */
+    font-size: x-small;
+ 
+}
+ 
+@media (max-width: 991.98px) {
+    main {
+        padding-left: 7%;
+    }
+}
+ 
+.sidebar .active {
+    color: #FFF;
+    /* background-color: blueviolet; */
+    /* box-shadow: 0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 10px 0 rgb(0 0 0 / 12%); */
+}
+ 
+.list-group {
+    position: absolute;
+    top: 0%;
+    border-radius: 0%;
+}
+ 
+.list-group-item {
+ 
+    border: none;
+    color: rgb(251, 247, 247);
+    background-color: transparent;
+    /* background-color: #27235C; */
+    padding: 30px 10px 11px 6px;
+    text-align: center;
+    border-radius: 0%;
+}
+ 
+.list-group :hover {
+    background-color: rgb(249, 110, 110);
+}
+ 
+.card {
+    margin: auto;
+    width: 50%;
+    position: sticky;
+    /* padding: 20%; */
+    border-radius: 10px;
+ 
+}
+ 
+ 
+.card-header {
+    border: none;
+    background-color: transparent;
+}
+ 
+.card-body {
+    cursor: pointer;
+}
+ 
+.card-footer {
+    color: rgb(145, 145, 145);
+    font-size: smaller;
+    font-weight: 100;
+    border: none;
+    background-color: transparent;
+    /* margin-bottom: 2%; */
+}
+ 
+.card-content {
+    background-color: rgb(242, 242, 242);
+    padding: 3%;
+    border-radius: 5px;
+}
+ 
+ 
+.title {
+    color: #97247E;
+    padding: 1%;
+    font-size: x-large;
+    font-weight: 500;
+    text-decoration: none;
+}
+ 
+.open {
+    color: rgb(43, 99, 242);
+    padding: auto;
+    font-size: x-small;
+    border: 1px solid rgb(43, 99, 242);
+    border-radius: 3px;
+}
+
+.close {
+    color: red;
+    padding: auto;
+    font-size: x-small;
+    border: 1px solid red;
+    border-radius: 3px;
+}
+ 
+/* td {
+    width: 50%;
+    background-color: transparent;
+} */
+ 
+#cmtfield {
+    /* width: 50%; */
+    float: left;
+    margin-left: 4%;
+}
+ 
+#likefld {
+    float: left;
+    font-size: medium;
+    display: inline-flex;
+}
+ 
+#cmttext {
+    margin-left: 2%;
+    margin-right: 7%;
+    width: 100%;
+}
+ 
+.addComment {
+    display: inline-flex;
+}
+ 
+#cmt {
+    width: 100%;
+    border-radius: 10px;
+    background-color: aliceblue;
+}
+ 
+#cmthead {
+    height: 40px;
+    /* background-color: rgb(76, 107, 135); */
+}
+ 
+#doit {
+    margin-top: 2%;
+}
+ 
+.btn {
+    padding: 0;
+    border: none;
+    background: none;
+    box-shadow: none;
+}
+ 
+/* .liked {
+    font-weight: bold;
+    color: #1565c0;
+} */
+ 
+/* .bi-hand-thumbs-up {
+    width: 40px;
+    height: 31px;
+} */
+ 
+.bi-hand-thumbs-up-fill {
+    width: 38%;
+    height: 38%;
+    fill: #5ea7fa;
+    /* stroke: black; */
+}
+ 
+/* .like-button,
+.dislike-button {
+    font-size: 1rem; */
+    /* padding: 5px 10px; */
+    /* color: #585858;
+} */
+ 
+#nav {
+    background-color: #27235C;
+}
+ 
+#cmt-crd {
+    width: 100%;
+    /* margin: auto; */
+}
+ 
+#tempcontent {
+    width: 100%;
+}
+
+#responded {
+    width: 60%;
+ 
+    text-align: center;
+    justify-content: center;
+ }
+ 
+ .checkmark__circle {
+     stroke-dasharray: 166;
+     stroke-dashoffset: 166;
+     stroke-width: 2;
+     stroke-miterlimit: 10;
+     stroke: #7ac142;
+     fill: none;
+     animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards
+ }
+ 
+ .checkmark {
+     width: 56px;
+     height: 56px;
+     border-radius: 50%;
+     display: block;
+     stroke-width: 2;
+     stroke: #7ac142;
+     stroke-miterlimit: 10;
+     margin: 10%;
+     box-shadow: inset 0px 0px 0px #7ac142;
+     animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both
+ }
+ 
+ .checkmark__check {
+     transform-origin: 50% 50%;
+     stroke-dasharray: 48;
+     stroke-dashoffset: 48;
+     animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards
+ }
+ 
+ @keyframes stroke {
+     100% {
+         stroke-dashoffset: 0
+     }
+ }
+ 
+ @keyframes scale {
+ 
+     0%,
+     100% {
+         transform: none
+     }
+ 
+     50% {
+         transform: scale3d(1.1, 1.1, 1)
+     }
+ }
+ 
+ @keyframes fill {
+     100% {
+         box-shadow: inset 0px 0px 0px 30px #7ac142
+     }
+ }
+ 
+ 
+ #sorry {
+    width: 60%;
+ 
+    text-align: center;
+    justify-content: center;
+}
+ 
+ #sry {
+     width: 56px;
+     height: 56px;
+     border-radius: 50%;
+     display: block;
+     stroke-width: 2;
+     stroke: red;
+     stroke-miterlimit: 10;
+     box-shadow: inset 0px 0px 0px red;
+     animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+ }
+ 
+ #chk {
+     stroke-dasharray: 166;
+     stroke-dashoffset: 166;
+     stroke-width: 2;
+     stroke-miterlimit: 10;
+     stroke: red;
+     fill: none;
+     animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+ }
+ 
+ .chk_cir {
+     transform-origin: 50% 50%;
+     stroke-dasharray: 48;
+     stroke-dashoffset: 48;
+     animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+ }
+ 
+ @keyframes stroke {
+     100% {
+         stroke-dashoffset: 0;
+     }
+ }
+ 
+ @keyframes scale {
+ 
+     0%,
+     100% {
+         transform: none;
+     }
+ 
+     50% {
+         transform: scale3d(1.1, 1.1, 1);
+     }
+ }
+ 
+ @keyframes fill {
+     100% {
+         /* box-shadow: inset 0px 0px 0px 30px #7ac142; */
+     }
+ }
