@@ -1,0 +1,37 @@
+<div  style="display: flex;flex-wrap: nowrap;float: right;">
+ 
+  <input type="text" [(ngModel)]="searchName"  placeholder="Search here" class="form-control w-75">
+ 
+  <button class="btn btn-primary hidden-xs" (click)="searchUsers()" (click)="toggleDisplayEmployee()">Search</button>
+</div>
+ 
+<br>
+<br>
+<br>
+<div class="row" *ngIf="Employee">
+ 
+<div class="card" style="width: 20rem;" *ngFor="let p of user">
+<div class="card-body text-center">
+<i class="fa far fa-user-circle fa-4x"></i>
+<h3 class="card-title">{{p.userFirstName}} {{p.userLastName}}</h3>
+<h5>{{p.regionName}}</h5>
+<button class="btn btn-sm btn-dark" routerLink="/profile">{{p.userEmailId}}</button>
+</div>
+</div>
+</div>
+ 
+<div *ngIf="!Employee" class="row">
+<div class="card mt-4" style="width: 20rem;" *ngFor="let users of user">
+<div class="card-body text-center">
+  <i class="fa far fa-user-circle  fa-3x"></i>
+ 
+  <h2 class="card-title">{{users.userFirstName}} {{users.userLastName}}</h2>
+  <h5></h5>
+  <p>
+    <button class="btn btn-sm btn-dark" routerLink="/profile">
+      {{users.userEmailId}}
+    </button>
+  </p>
+</div>
+</div>
+</div>

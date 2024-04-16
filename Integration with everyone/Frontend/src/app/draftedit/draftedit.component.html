@@ -1,0 +1,63 @@
+<div class="card">
+    <div class="card-body">
+      <form [formGroup]="contentForm" style="margin: 20px;">
+        <div class="row">
+  
+          <p-editor  [(ngModel)]="contentForm.value.postContent"  [style]="{'height':'200px'}" name="PageContent" formControlName="postContent"
+            id="richtext"></p-editor>
+            
+          <br>
+        </div><br>
+  
+  
+        <!-- <div class="row"> -->
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+              (click)="toggleDisplayShare()">
+            <label class="form-check-label" for="flexSwitchCheckDefault" *ngIf="!label">Share with Specific Project</label>
+            <table>
+              <tr class="float-md-end ml-auto p-2">
+     
+                <div class="field" *ngIf="!toggle">
+                  <td>
+                    <select class="form-select form-select-sm" id="inputSelectReason" class="form-control"
+                      formControlName="regionId" (change)="getDepartment(contentForm.value)">
+                      <option value="" class="share" disabled selected hidden>Select Region</option>
+                      <option *ngFor="let reg of RegionList" [value]="reg.regionId">
+                        {{ reg.regionName }}
+                      </option>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="form-select form-select-sm" id="inputSelectReason" class="form-control"
+                      formControlName="departmentId" (change)="getProject(contentForm.value)">
+                      <option value="" disabled selected hidden>Select Department</option>
+                      <option *ngFor="let Dept of DeptList" [value]="Dept.departmentId">
+                        {{ Dept.departmentName }}
+                      </option>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="form-select form-select-sm" id="inputSelectReason" class="form-control"
+                      formControlName="projectId">
+                      <option value="" disabled selected hidden>Select Project</option>
+                      <option *ngFor="let Proj of ProjectList" [value]="Proj.projectId">
+                        {{ Proj.projectName }}
+                      </option>
+                    </select>
+                  </td>
+                </div>
+              </tr>
+            </table>
+          </div>
+          <div class="d-grid gap-4 d-md-flex justify-content-md-end">
+  
+  
+            <button type="submit" class="btn btn-info m-2" (click)="insertPost(contentForm.value)" routerLink="/postnav"
+              > Share</button>
+  
+          </div>
+        
+      </form>
+  
+    </div>

@@ -1,0 +1,23 @@
+.dropdown-container {
+    display: inline-block;
+    /* margin-right: 2%; */
+
+}
+
+.card-body {
+    padding-top: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 3%;
+    background-color: rgb(243, 246, 246);
+}
+
+#richtext {
+    background-color: rgb(249, 246, 248);
+    width: 100%;
+    /* height:  100%; */
+}
+
+.share{
+    padding-left: 95%;
+}
