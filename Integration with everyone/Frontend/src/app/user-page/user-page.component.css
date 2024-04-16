@@ -1,0 +1,134 @@
+
+
+.left .item-menu {
+  height:50px;
+  overflow:hidden;
+  color:#fff;
+}  
+.left a{
+color: white;
+text-decoration: none;
+font-weight: bold;
+} 
+span.menu{
+padding-left: 17px;
+}
+.t_search {
+color: black;
+height: 35px;
+margin-left: 15px;
+width: 190px
+}
+
+.example-spacer {
+flex: 1 1 auto;
+}
+
+.mat-mdc-form-field {
+font-size: 14px;
+width: 10%;
+
+}
+
+#side{
+margin-top: 0px;
+}
+.img{
+width:0;
+}
+
+
+
+#card{
+width: 100%;
+padding-left: 50%;  
+margin-bottom: 20%;
+margin-right: 20%;
+padding-right: 30%;
+
+
+} 
+#home{
+margin-top: 7%;
+/* padding-left: unset; */
+}
+
+.card{
+height: 50%;
+width: 250%;
+align-content: center;
+padding-top: 0px;
+}
+img{
+margin-top: 5px;
+height: 90%;
+width: 20%;
+}
+
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+body{
+font-family: 'Roboto', sans-serif;
+}
+h1{
+text-align: center;
+color: #4181ee;
+}
+.wrapper{
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+}
+.card{
+max-width: 280px;
+min-height: 150px;
+background: #ffffff;
+padding: 30px;
+border-radius: 3px;
+box-sizing: border-box;
+color: #000000;
+margin:20px;
+/* box-shadow: rgb(50 50 93 / 25%) 0px 30px 60px -12px, rgb(0 0 0 / 30%) 0px 18px 36px -18px; */
+}
+.card:nth-child(2){
+background: #ffffff;
+}
+.card:last-child{
+background: #ffffff;
+}
+.card-title{
+margin-top: 0;
+font-size: 16px;
+font-weight: 600;
+letter-spacing: 1.2px;
+}
+.card-content{
+font-size: 14px;
+letter-spacing: 0.5px;
+line-height: 1.5;
+}
+.card-btn{
+all: unset;
+display: block;
+margin-left: auto;
+border: 2px solid #FFF;
+padding: 10px 15px;
+border-radius: 25px;
+font-size: 10px;
+font-weight: 600;
+transition: all 0.5s;
+cursor: pointer;
+letter-spacing: 1.2px;
+background: #27235c;
+color:#ffffff;
+
+
+
+
+}
+.card-btn:hover{
+background: #27235c;
+padding: 11px 16px;
+transition-duration: 0ms;
+
+}
