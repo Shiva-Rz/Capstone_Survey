@@ -1,0 +1,9 @@
+i
+{
+    color: white;
+}
+.active,li:hover{
+    background-color: #ac5098;
+    border-radius: 2px;
+    width: 70px;
+}

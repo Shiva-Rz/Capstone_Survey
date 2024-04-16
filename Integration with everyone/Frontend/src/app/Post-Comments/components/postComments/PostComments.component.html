@@ -1,0 +1,79 @@
+<div *ngFor="let post of posts;let i=index"> 
+
+  <div class="card" style="width: 50%;"> 
+  
+   
+  
+    <div class="card-body" style="width: 50%;"> 
+  
+      <div class="comments"> 
+  
+        <h3 class="comments-title"> 
+  
+           
+  
+          Comments ({{getCommentsCount(post.postId)}}) 
+  
+        </h3> 
+  
+        <PostComment-form 
+  
+          submitLabel="Post Comment" 
+  
+          (handleSubmit)="addComment({ text: $event, parentId: '0', postId: post.postId , userId:1})" 
+  
+        > 
+  
+        </PostComment-form> 
+  
+         
+  
+          <ul *ngFor="let rootComment of getRootComments(post.postId)"> 
+  
+            <ng-container *ngIf="rootComment.post.postId === post.postId"> 
+  
+        <div class="comments-container"> 
+  
+          <PostComment 
+  
+            [PostComment]="rootComment" 
+  
+            [postreplies]="getReplies(rootComment.id)" 
+  
+            [activeComment]="activeComment" 
+  
+            (setActiveComment)="setActiveComment($event)" 
+  
+            (addComment)="addComment($event)" 
+  
+            (deleteComment)="deleteComment($event)" 
+  
+            (updateComment)="updateComment($event)" 
+  
+            [currentUserId]="currentUserId" 
+  
+            aria-placeholder="Leave a comment" 
+  
+          > 
+  
+          </PostComment> 
+  
+        </div> 
+  
+        </ng-container> 
+  
+        </ul> 
+  
+        
+  
+      </div> 
+  
+      
+  
+    </div> 
+  
+  </div> 
+  
+  </div> 
+  
+   

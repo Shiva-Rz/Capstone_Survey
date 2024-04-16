@@ -1,0 +1,86 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-auto sticky-top " style="background-color: #27235c;">
+            <div class="d-flex flex-sm-column flex-row flex-nowrap align-items-center sticky-top"
+                style="background-color: #27235C;">
+                <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 align-items-center"
+                    style="background-color: #27235C">
+ 
+                    <br>
+ 
+                    <li>
+                        <a class="nav-link " title="" data-bs-toggle="tooltip" data-bs-placement="right"
+                            data-bs-original-title="Dashboard">
+                            <img src="assets/relevantz-logo.png" style="width: 35px;">
+                            <p style="color: white;font-size: smaller;">POLL</p>
+                        </a>
+                    </li>
+ 
+                    <li (click)="callCreate()">
+                        <a class="nav-link " title="" data-bs-toggle="tooltip" data-bs-placement="right"
+                            data-bs-original-title="Dashboard">
+                            <i class="fa fa-plus" style="font-size: 20px;"></i>
+                            <p style="color: white;font-size: smaller;">Create</p>
+                        </a>
+                    </li>
+                    <li (click)="callView()">
+                        <a class="nav-link  px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right"
+                            data-bs-original-title="Orders">
+                            <i class="fa fa-eye " style="font-size: 20px;"></i>
+ 
+                            <p style="color: white;font-size: smaller;">View</p>
+                        </a>
+                    </li>
+ 
+                    <li (click)="callDraft()">
+                        <a class="nav-link  px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right"
+                            data-bs-original-title="Orders">
+ 
+                            <i class="fa fa-newspaper-o" style="font-size: 20px;"></i>
+                            <p style="color: white;font-size: smaller;">Draft</p>
+                        </a>
+                    </li>
+ 
+ 
+                    <li (click)="callEmployee()">
+                        <a class="nav-link  px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right"
+                            data-bs-original-title="Orders">
+ 
+                            <i class="fa fa-users" style="font-size: 20px;"></i>
+                            <p style="color: white;font-size: smaller;">Employee</p>
+                        </a>
+                    </li>
+ 
+                    <li><br>
+                        <br>
+                    </li>
+                    <li routerLink="/User">
+                        <a class="nav-link  px-2" title="" data-bs-toggle="tooltip" data-bs-placement="right"
+                            data-bs-original-title="Orders">
+ 
+                            <i class="fa fa-home" style="font-size: 20px;"></i>
+                            <p style="color: white;font-size: smaller;">Home</p>
+                        </a>
+                    </li>
+                    <br>
+ 
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm p-3 min-vh-100">
+            <div *ngIf="create">
+                <app-create></app-create>
+            </div>
+            <div *ngIf="view">
+                <app-view></app-view>
+            </div>
+            <div *ngIf="draft">
+                <app-draft></app-draft>
+            </div>
+            <div *ngIf="employee">
+                <app-employee></app-employee>
+            </div>
+        </div>
+ 
+       
+    </div>
