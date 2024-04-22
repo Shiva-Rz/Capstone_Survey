@@ -1,0 +1,39 @@
+/* #side {
+    text-align: center;
+} */
+
+#a1, #a2, #a3 {
+    text-decoration: none;
+    color:black;
+}
+
+.btn {
+    border: 1px solid #27235C;
+}
+
+.btn:hover {
+    color: #FFFFFF;
+    background-color: #27235C;
+    
+}
+
+.card {
+    background-color:antiquewhite;
+    /* height:144% ; */
+}
+
+p {
+    color: red;
+    font-size: smaller;
+}
+
+/* .last {
+    margin-block-end: 100%;
+} */
+
+
+
+#newone{
+    height: 380px;
+
+}

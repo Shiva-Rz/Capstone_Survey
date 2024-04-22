@@ -1,0 +1,109 @@
+.progress-container {
+    position: relative;
+    white-space: nowrap;
+    display:flex;
+  }
+  .field{
+    display: flex;
+   flex-wrap: nowrap;
+  }
+ 
+ 
+  .progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+ 
+  .progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(159, 239, 185);
+    color: black;
+  }
+ 
+  svg
+{
+width: 45px;
+height: 41px;
+fill: grey;
+}
+.row
+{
+  margin-top: -45px;
+  margin-left: 40px;
+}
+.like-button, .dislike-button {
+    font-size: 1rem;
+    padding: 5px 10px;
+    color:   #585858;
+}
+ 
+.liked{  
+    font-weight: bold;
+    color: #1565c0;
+}
+.bi-hand-thumbs-up
+{
+    width: 40px;
+    height: 31px;
+}
+.bi-hand-thumbs-up-fill
+{
+    width: 40px;
+    height: 31px;
+    fill: #1565c0;
+}
+.like, .comment
+{
+    padding: 0;
+    border: none;
+    background: none;
+}
+.bi-chat
+{
+    width: 40px;
+    height: 31px;
+    margin-top: 5px;
+}
+#container
+{
+    margin-top: 50px;
+    margin-left: -50px;
+}
+.container
+{
+    margin-top: 60px;
+}
+input[type=radio] {
+    width: 40px;
+    height: 1.4em;
+    margin-left: -40px;
+    margin-top: 25px;
+}
+#flexRadioDefault
+{
+    margin-top: 18px;
+}
+#flexRadioDefault1
+{
+    margin-top: 61px;
+}
+#comment
+{
+    margin-top: -10px;
+}
+.voted
+{
+    margin-top: 4px;
+    margin-left: 230px;
+}
+#picture
+{
+    height: 66px;
+}

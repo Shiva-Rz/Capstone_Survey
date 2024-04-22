@@ -1,0 +1,50 @@
+<div *ngFor="let survey of surveys;let i=index">
+  <div class="card">
+    
+    <div class="card-body">
+      <div class="comments">
+        <div class="comments-title">
+          <!-- Comments ({{comments.length}})  -->
+          surveycomments {{getCommentsCount(survey.surveyId)}}
+        </div>
+        <survey-comment-form submitLabel="Post Comment"
+          (handleSubmit)="addComment({ text: $event, parentId: '0', surveyId: survey.surveyId , userId:userId})">
+        </survey-comment-form>
+        <!-- [replies]="getReplie(rootComment.id)" -->
+        <!-- *ngFor="let rootComment of getRootComments()" -->
+        <!-- <div *ngFor="let poll of polls,let i as index"> -->
+        <div *ngFor="let rootComment of getRootComments(survey.surveyId)">
+          
+          <ng-container *ngIf="rootComment.survey.surveyId === survey.surveyId">
+            <div class="comments-container">
+              <surveycomment [surveycomment]="rootComment" [surveyreplies]="getReplies(rootComment.id)" [activeComment]="activeComment"
+                (setActiveComment)="setActiveComment($event)" (addComment)="addComment($event)"
+                (deleteComment)="deleteComment($event)" (updateComment)="updateComment($event)"
+                [currentUserId]="currentUserId" aria-placeholder="Leave a comment">
+              </surveycomment>
+            </div>
+          </ng-container>
+        </div>
+        <!-- </div> -->
+      </div>
+      <!-- <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Content</th>
+          <th scope="col">Date</th>
+          <th scope="col">parentId</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let comment of comments">
+          <td>{{comment.id}}</td>
+          <td>{{comment.body}}</td>
+          <td>{{comment.createdAt}}</td>
+          <td>{{comment.parentId}}</td>
+        </tr>
+      </tbody>
+</table> -->
+    </div>
+  </div>
+</div>

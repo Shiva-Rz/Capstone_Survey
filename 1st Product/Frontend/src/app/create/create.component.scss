@@ -1,0 +1,46 @@
+.field{
+  display: flex;
+ flex-wrap: nowrap;
+}
+#input
+{
+  padding: 0;
+border: none;
+background: none;
+width: 800px;
+}
+#input:hover
+{
+  padding: 0;
+border: none;
+background: none;
+}
+ 
+.card-title
+{
+  font-size: 25px;
+}
+ 
+ 
+.btn{
+  padding: 8px 16px;
+  background: #27235C;
+  border-radius: 7px;
+  color: white;
+ 
+}
+ 
+.btn:hover:enabled {
+  cursor: pointer;
+  background: rgb(255, 255, 255);
+  color: #27235C;
+  border-color: rgb(105, 97, 97);
+  font-weight: bold;
+}
+ 
+.draft{
+  padding: 8px 16px;
+  background: #27235C;
+  border-radius: 7px;
+  color: white;
+}

@@ -1,0 +1,104 @@
+<form [formGroup]="myForm" id="myForm" *ngIf="hideform">
+
+    <div class="card mt-5">
+
+        <div class="card-header" id="surname">
+            {{survey.surveyName}}
+        </div>
+
+        <div class="card-body">
+
+
+            <div *ngFor="let qn of question;let j='index';let l=last">
+                <div *ngIf="num1==j">
+                    <div *ngFor="let pg of pages">
+                        <div class="card" *ngIf="pg.pageId==qn.pageId" id="content">
+                            <div class="card-header" id="pgtitle">
+                                {{pg.pageTitle}}
+                            </div>
+
+                            <div class="card-body">
+                                {{qn.questions}}
+
+
+                                <div class="mt-4" [ngSwitch]="qn.optionType" *ngFor="let opt of options">
+                                    <div *ngIf="qn.questionId==opt.questionId">
+
+                                        <div *ngIf="qn.optionType=='Single Choice'">
+                                            <input type="radio" formControlName="optionId" name="optionId"
+                                                value="{{opt.optionId}}">
+                                            &nbsp;<label for="opt.options">{{opt.options}}</label>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- </div> -->
+
+
+                                <div [ngSwitch]="qn.optionType" *ngFor="let opt of options">
+                                    <div *ngIf="qn.questionId==opt.questionId">
+
+
+                                        <div *ngIf="qn.optionType=='Multiple Choice'">
+                                            <input type="checkbox" formControlName="optionId" value="{{opt.optionId}}"
+                                                (change)="onCheckboxChange(opt.optionId, $event)" />
+                                            <!-- [(ngModel)]="opt.is" -->
+                                            &nbsp;<label>{{opt.options}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4" *ngIf="qn.optionType=='Dropdown'" id="dropopt">
+                                    <div>
+                                        <select class="form-select" formControlName="optionId">
+                                            <ng-container *ngFor="let opt of options">
+                                                <option *ngIf="opt.questionId==qn.questionId" value="{{opt.optionId}}">
+                                                    {{opt.options}}</option>
+                                            </ng-container>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div>
+                                    <button class="btn btn-success" (click)="insertAnswer(myForm.value)" *ngIf="!l"
+                                        (click)="nextQuestion()" id="btnnew">Next
+
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6 17L14 12L6 7V17Z" fill="currentColor" />
+                                            <path d="M18 7H15V12V17H18V7Z" fill="currentColor" />
+                                        </svg>
+                                    </button>
+
+                                    <button class="btn btn-primary mt-4" (click)="insertAnswer(myForm.value)" (click)="submit()"
+                                         *ngIf="l" id="btnnew">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</form>
+
+
+
+<div class="card " *ngIf="popUp" id="responded">
+    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" style="margin-left: 45%;">
+        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+    </svg>
+    <h4 class="mb-5">
+        Your Response Submitted Successfully!
+    </h4>
+</div>

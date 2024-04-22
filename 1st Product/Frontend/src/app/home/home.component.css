@@ -1,0 +1,365 @@
+
+ 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+ 
+@import url('https://fonts.cdnfonts.com/css/proxima-nova-condensed');
+ 
+ 
+* {
+ 
+    margin: 0;
+ 
+    padding: 0;
+ 
+    box-sizing: border-box;
+ 
+    font-family: 'Proxima Nova Condensed', sans-serif;
+ 
+    font-family: 'Proxima Nova Extra Condensed', sans-serif;
+ 
+}
+ 
+body {
+ 
+    font-family: 'Proxima Nova Condensed', sans-serif;
+ 
+    font-family: 'Proxima Nova Extra Condensed', sans-serif;
+ 
+    height: 100%;
+ 
+    width: 100%;
+ 
+    /* background-image: url("https://www.audiology.org/wp-content/uploads/2023/12/shutterstock_1917115745-header.jpg"); */
+ 
+    background-position: center;
+ 
+    background-size: cover;
+ 
+}
+ 
+.sidebar {
+ 
+    position: fixed;
+ 
+    top: 0;
+ 
+    left: 0;
+ 
+    width: 80px;
+ 
+    height: 100%;
+ 
+    display: flex;
+ 
+    align-items: center;
+ 
+    flex-direction: column;
+ 
+    background: #27235C;
+ 
+    backdrop-filter: blur(17px);
+ 
+    --webkit-backdrop-filter: blur(17px);
+ 
+    border-right: 1px solid rgba(255, 255, 255, 0.7);
+ 
+    transition: width 0.3s ease;
+ 
+}
+ 
+.sidebar:hover {
+ 
+    width: 210px;
+ 
+}
+ 
+.sidebar .logo {
+ 
+    color: #ffffff;
+ 
+    display: flex;
+ 
+    align-items: center;
+ 
+    padding: 25px 10px 15px;
+ 
+}
+ 
+.logo img {
+ 
+    width: 30px;
+ 
+    border-radius: 50%;
+ 
+}
+ 
+.logo h2 {
+ 
+    font-size: 1.15rem;
+ 
+    font-weight: 600;
+ 
+    margin-left: 15px;
+ 
+    margin-top: 15px;
+ 
+    display: none;
+ 
+}
+ 
+.sidebar:hover .logo h2 {
+ 
+    display: block;
+ 
+}
+ 
+.sidebar .links {
+ 
+    list-style: none;
+ 
+    margin-top: 10px;
+ 
+    overflow-y: auto;
+ 
+    scrollbar-width: none;
+ 
+    height: calc(100% - 140px);
+ 
+}
+ 
+.sidebar .links::-webkit-scrollbar {
+ 
+    display: none;
+ 
+}
+ 
+.links li {
+ 
+    display: flex;
+ 
+    border-radius: 4px;
+ 
+    align-items: center;
+ 
+}
+ 
+.links li:hover {
+ 
+    cursor: pointer;
+ 
+    background: #97247E;
+ 
+}
+ 
+.links h4 {
+ 
+    color: #222;
+ 
+    font-weight: 500;
+ 
+    display: none;
+ 
+    margin-bottom: 10px;
+ 
+}
+ 
+.sidebar:hover .links h4 {
+ 
+    display: block;
+ 
+}
+ 
+.links hr {
+ 
+    margin: 10px 8px;
+ 
+    border: 1px solid #4c4c4c;
+ 
+}
+ 
+.sidebar:hover .links hr {
+ 
+    border-color: transparent;
+ 
+}
+ 
+.links li span {
+ 
+    padding: 12px 10px;
+ 
+}
+ 
+.links li a {
+ 
+    padding: 10px;
+ 
+    color: #ffffff;
+ 
+    display: none;
+ 
+    font-weight: 500;
+ 
+    white-space: nowrap;
+ 
+    text-decoration: none;
+ 
+}
+ 
+.sidebar:hover .links li a {
+ 
+    display: block;
+ 
+}
+ 
+.links .logout-link {
+ 
+    margin-top: 20px;
+ 
+}
+ 
+.tab1 {
+ 
+    margin-top: 20%;
+ 
+    background-color: white;
+ 
+    border-radius: 10px;
+ 
+}
+ 
+table {
+ 
+    margin-top: auto;
+ 
+    background-color: transparent;
+ 
+    backdrop-filter: blur(15px);
+ 
+    border-width: 10px;
+ 
+    border-color: #000;
+ 
+    border-radius: 20px;
+ 
+    font-weight: bold;
+ 
+}
+ 
+ 
+.example-spacer {
+ 
+    flex: 1 1 auto;
+ 
+}
+ 
+.container {
+ 
+    display: flex;
+ 
+    flex-direction: column;
+ 
+    justify-content: center;
+ 
+    align-items: center;
+ 
+}
+ 
+a:hover {
+ 
+    /* background: #fff; */
+ 
+    text-decoration: none;
+ 
+}
+ 
+th {
+ 
+    text-align: center;
+ 
+    font-size: larger;
+ 
+    font-weight: bolder;
+ 
+    margin: auto;
+ 
+}
+ 
+td {
+ 
+    text-align: center;
+ 
+    font-size: larger;
+ 
+}
+ 
+tr:hover {
+ 
+    background-color: white;
+ 
+}
+ 
+.btn1 {
+ 
+    /* background-color: white; */
+ 
+    border: #000;
+ 
+}
+ 
+.btn2 {
+ 
+    border: #000000;
+ 
+    border-width: 2px;
+ 
+}
+ 
+.btn2:hover {
+ 
+    background-color: #fc0a56;
+ 
+}
+ 
+.btn1:hover {
+ 
+    background-color: #315eba;
+ 
+}
+ 
+.add {
+ 
+    font-weight: bold;
+ 
+}
+ 
+.add:hover {
+ 
+    background-color: #315eba;
+ 
+    color: white;
+ 
+}
+ 
+.card {
+ 
+    background-color: #CCCCCC;
+ 
+    margin-left: 10%;
+ 
+    width: 90%;
+ 
+}
+#home
+{
+    margin-top: 390px;
+}
+button
+{
+    padding: 0;
+border: none;
+background: none;
+}
+.row
+{
+    margin-top: 60px;
+}

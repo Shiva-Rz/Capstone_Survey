@@ -1,0 +1,302 @@
+/* Survey */
+
+/* You can add global styles to this file, and also import other style files */
+@import '~quill/dist/quill.snow.css';
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'proxima_nova_rgregular';
+}
+
+@font-face {
+  font-family: 'proxima_nova_rgregular';
+  src: url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.eot');
+  src: url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.woff') format('woff'),
+    url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.ttf') format('truetype'),
+    url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.svg#proxima_nova_rgregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'proxima_nova_rgbold';
+  src: url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.eot');
+  src: url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.woff') format('woff'),
+    url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.ttf') format('truetype'),
+    url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.svg#proxima_nova_rgbold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Comments Section */
+
+.comments {
+  /* margin-top: 20px; */
+}
+
+.comments-title {
+  font-size: large;
+  /* margin-bottom: 5px; */
+}
+
+.comments-container {
+  /* margin-top: 40px; */
+  background-color: #EEEEEE;
+  border-radius: 10px;
+  margin-left: -3.5%;
+  /* padding: 10px; */
+  flex-wrap:wrap ;
+}
+
+.comment-form-title {
+  font-size: 22px;
+}
+
+.comment-form-textarea {
+  width: 70%;
+  /* margin: 1%; */
+  /* border-style:none ; */
+  /* height: 60px; */
+  /* margin-bottom: 8px;
+    margin-top: 8px; */
+  /* border: 1px solid rgb(107, 114, 12); */
+}
+
+.comment-form-button-submit {
+  /* float: right; */
+  /* margin: 1%; */
+  /* padding: 8px 16px; */
+  /* background: rgb(59, 130, 246); */
+  border-radius: 8px;
+  color: black;
+  border-color: #27235C;
+  background-color: transparent;
+
+}
+
+.comment-form-button-submit:hover {
+  background-color: #27235C;
+  color: #FFFFFF;
+}
+
+.comment-form-button:hover:enabled {
+  cursor: pointer;
+  /* background: #27235C; */
+  color: #FFFFFF;
+
+}
+
+.comment-form-button-submit:disabled {
+  opacity: 0.7;
+  cursor: default;
+  display: inline-flex;
+}
+
+.comment-form-cancel-button {
+  /* margin-left: 10px; */
+  /* float: right; */
+  margin-left: 7%;
+  border-color: #E01950;
+  border-radius: 8px;
+}
+
+.comment-form-cancel-button:hover {
+  background-color: #E01950;
+}
+
+.comment {
+  /* margin: 1%; */
+  /* display: inline-flex; */
+  /* margin-bottom: 28px; */
+  padding: 10px;
+}
+
+.comment-image-container {
+  /* margin-right: 12px; */
+
+}
+
+.comment-image-container img {
+  /* border-radius: 50px; */
+
+}
+
+.comment-right-part {
+  width: 100%;
+  /* display: inline-flex; */
+}
+
+.comment-content {
+  width: 100%;
+  display: inline-flex;
+}
+
+.comment-author {
+  margin-right: 8px;
+  font-size: 20px;
+  color: rgb(59, 130, 246);
+}
+
+.comment-text {
+  /* font-size: 18px; */
+
+  margin: 1%;
+  margin-left: 5%;
+  /* background-color: #FFFFFF; */
+}
+
+.comment-actions {
+  display: inline-flex;
+  font-size: 12px;
+  /* color: rgb(51, 51, 51); */
+  cursor: pointer;
+  /* margin-top: 8px; */
+  margin: 1%;
+}
+
+.comment-action {
+  margin-right: 8px;
+}
+
+.comment-action:hover {
+  font-weight: 600;
+  /* text-decoration: underline; */
+}
+
+.replies {
+  margin-top: 20px;
+}
+
+.comment-view {
+  width: 100%;
+  margin: auto;
+  /* margin: 3%; */
+  display: inline-flex;
+  margin-top: 2%;
+  margin-left: 1%;
+}
+
+.comment-buttons {
+  display: inline-flex;
+  position: static;
+  margin: 0.2%;
+  float: right;
+  /* flex-wrap: wrap; */
+}
+
+/* You can add global styles to this file, and also import other style files
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+@font-face {
+  font-family: 'proxima_nova_rgregular';
+  src: url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.eot');
+  src: url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.eot?#iefix') format('embedded-opentype'),
+       url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.woff') format('woff'),
+       url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.ttf') format('truetype'),
+       url('https://litmus.com/fonts/Emails/proximanova-regular-webfont.svg#proxima_nova_rgregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'proxima_nova_rgbold';
+  src: url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.eot');
+  src: url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.eot?#iefix') format('embedded-opentype'),
+       url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.woff') format('woff'),
+       url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.ttf') format('truetype'),
+       url('https://litmus.com/fonts/Emails/proximanova-bold-webfont.svg#proxima_nova_rgbold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{
+   font-family: 'proxima_nova_rgregular';
+
+}
+#submit{
+   font-family: 'proxima_nova_rgregular';
+
+   background-color: #1B193F;
+   border-color: #1B193F;
+   font-weight: 550;
+
+}
+#submit:focus{
+   /* background-color: #27235c; */
+   border: 1px  solid white;
+   font-family: 'proxima_nova_rgregular';
+
+   outline-style: solid;
+   outline-color: transparent;
+   box-shadow: 0 0 0 2px #27235c;
+
+  
+}
+#submit:disabled{
+   font-family: 'proxima_nova_rgregular';
+
+   border: none;
+   background-color: #B3B3B3;
+   color: #666666;
+}
+#submit:hover{
+   font-family: 'proxima_nova_rgregular';
+
+   background-color: #27235c;
+}
+#resend:hover{
+   font-family: 'proxima_nova_rgregular';
+
+   background-color: #EEEEEE;
+}
+#resend:disabled{
+   font-family: 'proxima_nova_rgregular';
+
+   color: #eeeeee;
+   background-color: #FFFFFF;
+   color: #666666;
+   border: 2px solid #cccccc;
+border-color: #cccccc;
+}
+#resend:focus{
+   /* background-color: #27235c; */
+   /* border: 2px  solid #27235c; */
+   font-family: 'proxima_nova_rgregular';
+
+   outline-style: solid;
+   outline-color: transparent;
+   box-shadow: 0 0 0 1.5px #27235c;
+   background-color: #ffffff;
+
+  
+}
+#resend{
+   font-family: 'proxima_nova_rgregular';
+
+   border-color: #27235c;
+   color: #27235c;
+   background:none
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+/* Post Module */
+
+
+
+/* You can add global styles to this file, and also import other style files */
+@import '~quill/dist/quill.snow.css';
+/* html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+
+/* You can add global styles to this file, and also import other style files */

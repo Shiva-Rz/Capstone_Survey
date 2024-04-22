@@ -1,0 +1,53 @@
+<app-navbar></app-navbar>
+<div class="container">
+  <div class="login-container">
+    <h2>Invite Employee</h2>
+    <form [formGroup]="inviteForm">
+
+      <div class="form-group">
+        <label for="email" class="col-form-label-lg">Email ID</label>
+        <input type="email" id="email" class="form-control form-control-lg" formControlName="email" placeholder="Please enter Inviting person email ID">
+        <div *ngIf="inviteForm.get('email')!.touched && inviteForm.get('email')!.invalid">
+          <div *ngIf="inviteForm.get('email')!.hasError('required')">
+            <font color="red">*Email required</font>
+          </div>
+          <div *ngIf="inviteForm.get('email')!.hasError('pattern')">
+            <font color="red">*Invalid email format</font>
+          </div>
+        </div>
+      </div>      
+      <button type="submit" class="btn btn-block btn-lg btn-primary" [disabled]="inviteForm.invalid" id="submit"
+      (click)="sendInvite(inviteForm.value)">Send Invite</button>    
+      
+    </form><br><br>
+    <div *ngIf="message1.valueOf()">
+      <p class="alert alert-danger" id="alert">
+        <strong>OOPS!</strong> {{message1}}
+      </p>
+    </div>
+    
+    
+    <div *ngIf="message2.valueOf()">
+      <p class="alert alert-warning" id="alert">
+        <strong>Warning!</strong> {{message2}}
+      <p>
+    </div>
+    
+    
+    <div *ngIf="message3.valueOf()">
+      <p class="alert alert-success" id="alert">
+        <strong>Success!</strong> {{message3}}
+      </p>
+    </div>
+
+   
+   
+    
+  
+  </div>
+</div>
+<script type="text/javascript">
+  function spinner() {
+      document.getElementsByClassName("loader")[0].style.display = "block";
+  }
+</script>  
